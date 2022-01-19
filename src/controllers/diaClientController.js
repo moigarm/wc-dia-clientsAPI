@@ -37,8 +37,9 @@ function updateRecord(req, res) {
 
 router.get('/list', (req, res) => {
     diaClient.find((err, docs) => {
-        if (!err)
+        if (err)
         res.end(`Error durante la recuperación de datos : ' + ${err}`)
+        res.send(docs)
     });
 });
 
@@ -46,6 +47,7 @@ router.get('/:id', (req, res) => {
     diaClient.findById(req.params.id, (err, doc) => {
         if (err)
         res.end(`No se encontró el registro : ' + ${err}`)
+        res.send(doc)
     });
 });
 
@@ -53,6 +55,7 @@ router.get('/delete/:id', (req, res) => {
     diaClient.findByIdAndRemove(req.params.id, (err, doc) => {
         if (err)
         res.end(`No se encontró el registro para eliminar : ' + ${err}`)
+        else res.end(`Registro ${req.params.id} ha sido eliminado satisfactoriamente`)
     });
 });
 
