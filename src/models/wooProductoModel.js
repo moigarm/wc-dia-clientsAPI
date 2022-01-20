@@ -1,15 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 var wooProducto = new mongoose.Schema({
-    nombre: {
-        type: String
-    },
-    precio: {
-        type: mongoose.Decimal128
-    },
-    descripcion: {
-        type: String
-    }
+  nombre: {
+    type: String,
+  },
+  precio: {
+    type: mongoose.Decimal128,
+  },
+  descripcion: {
+    type: String,
+  },
 });
 
-mongoose.model('wooProductoModel', wooProducto)
+mongoose.model("wooProducto", wooProducto);
