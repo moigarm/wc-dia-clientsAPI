@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 var wooClient = new mongoose.Schema({
     nombreCliente: {
@@ -12,7 +12,10 @@ var wooClient = new mongoose.Schema({
     },
     fechaCompra: {
         type: Date
+    },
+    habilitado: {
+        type: Boolean
     }
 });
 
-mongoose.model('wooClient', wooClient);
+mongoose.model('wooClient', wooClient)

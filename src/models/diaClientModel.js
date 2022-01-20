@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 var diaClient = new mongoose.Schema({
     nombreCliente: {
@@ -12,7 +12,10 @@ var diaClient = new mongoose.Schema({
     },
     temasDeInteres: {
         type: [String]
+    },
+    habilitado: {
+        type: Boolean
     }
 });
 
-mongoose.model('diaEmail', diaClient);
+mongoose.model('diaClient', diaClient)
