@@ -1,7 +1,7 @@
 const express = require('express')
 var router = express.Router()
 const mongoose = require('mongoose')
-const diaClient = mongoose.model('wooClient')
+const diaClient = mongoose.model('diaClient')
 
 router.post('/', (req, res) => {
     insertRecord(req, res)

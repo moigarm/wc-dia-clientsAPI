@@ -8,6 +8,7 @@ const cors = require('cors')
 
 const diaClientController = require('./controllers/diaClientController')
 const wooClientController = require('./controllers/wooClientController')
+const wooProductoController = require('./controllers/wooProductoController')
 
 let allowedOrigins = ['']
 
@@ -36,3 +37,4 @@ app.listen(process.env.PORT, () => {
 
 app.use('/diaClient', diaClientController)
 app.use('/wooClient', wooClientController)
+app.use('/wooPrducto', wooProductoController)

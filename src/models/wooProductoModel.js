@@ -1,9 +1,6 @@
 const mongoose = require('mongoose')
 
 var wooProducto = new mongoose.Schema({
-    id: {
-        type: String
-    },
     nombre: {
         type: String
     },

@@ -1,7 +1,7 @@
 const express = require('express')
 var router = express.Router()
 const mongoose = require('mongoose')
-const wooClient = mongoose.model('wooClient')
+const wooProducto = mongoose.model('wooProducto')
 
 router.post('/', (req, res) => {
     insertRecord(req, res)
@@ -12,15 +12,11 @@ router.put('/update', (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var client = new wooClient()
-    client.nombreCliente = req.body.clientName
-    // Id of the products
-    client.productosComprados = req.body.products
-    client.valorCompra = req.body.amount
-    client.fechaCompra = req.body.date
-    // El cliente está habilitado por defecto
-    client.habilitado = true
-    client.save((err, doc) => {
+    var producto = new wooProducto()
+    producto.nombre = req.body.productName
+    producto.precio = req.body.price
+    producto.descripcion = req.body.description
+    producto.save((err, doc) => {
         if (!err)
             res.json({status: 200, message: `Inserción satisfactoria`})
         else
@@ -29,7 +25,7 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    wooClient.findOneAndUpdate({ _id: req.body._id }, req.body, (err, doc) => {
+    wooProducto.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Actualización satisfactoria`})
         else
@@ -39,7 +35,7 @@ function updateRecord(req, res) {
 
 
 router.get('/list', (req, res) => {
-    wooClient.find((err, docs) => {
+    wooProducto.find((err, docs) => {
         if (err)
         res.json({status: 404, message: `Error durante la recuperación de datos : ' + ${err}`})
         res.json({status: 200, objects: docs})
@@ -47,16 +43,15 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    wooClient.findById(req.params.id, (err, doc) => {
+    wooProducto.findById(req.params.id, (err, doc) => {
         if (err)
         res.json({status: 404, message: `No se encontró el registro : ' + ${err}`})
         res.json({status: 200, object: doc})
     })
 })
 
-router.delete('/delete/:id', (req, res) => {
-    req.body.habilitado = false
-    wooClient.findOneAndUpdate({ _id: req.body._id }, req.body, (err, doc) => {
+router.get('/delete/:id', (req, res) => {
+    wooProducto.findByIdAndRemove(req.params.id, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Eliminación satisfactoria`})
         else
