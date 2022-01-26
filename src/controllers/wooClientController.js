@@ -2,6 +2,7 @@ const express = require('express')
 var router = express.Router()
 const mongoose = require('mongoose')
 const wooClient = mongoose.model('wooClient')
+import { wooClientMap } from "../util/wooClientMapper"
 
 router.post('/', (req, res) => {
     insertRecord(req, res)
@@ -12,14 +13,7 @@ router.put('/update', (req, res) => {
 })
 
 function insertRecord(req, res) {
-    var client = new wooClient()
-    client.nombreCliente = req.body.clientName
-    // Id of the products
-    client.productosComprados = req.body.products
-    client.valorCompra = req.body.amount
-    client.fechaCompra = req.body.date
-    // El cliente está habilitado por defecto
-    client.habilitado = true
+    let client = wooClientMap(req.body)
     client.save((err, doc) => {
         if (!err)
             res.json({status: 200, message: `Inserción satisfactoria`})
@@ -29,7 +23,7 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    wooClient.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
+    wooClient.findOneAndUpdate({ id: req.params.id }, wooClientMap(req.body), (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Actualización satisfactoria`})
         else
@@ -55,8 +49,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.delete('/delete/:id', (req, res) => {
-    req.body.habilitado = false
-    wooClient.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
+    wooClient.findOneAndUpdate({ id: req.params.id }, wooClientMap(req.body, false), (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Eliminación satisfactoria`})
         else

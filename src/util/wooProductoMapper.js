@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 const wooProducto = mongoose.model('wooProducto')
 
-export function wooProductoMap(wooProductoFromWebhook){
-    let newWooProducto = new wooProducto();
+export function wooProductoMap(wooProductoFromWebhook, habilitado){
+    let newWooProducto = new wooProducto()
+    if(habilitado === null) newWooProducto.habilitado = true
+    else newWooProducto.habilitado = habilitado
     newWooProducto.id = wooProductoFromWebhook.id
     newWooProducto.name = wooProductoFromWebhook.name
     newWooProducto.slug = wooProductoFromWebhook.slug

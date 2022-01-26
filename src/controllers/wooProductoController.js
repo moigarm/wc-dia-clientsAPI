@@ -20,6 +20,7 @@ function insertRecord(req, res) {
         else
         res.json({status: 404, message: `Error en Inserción : ' + ${err}`})
     })
+
 }
 
 function updateRecord(req, res) {
@@ -50,7 +51,7 @@ router.get('/:id', (req, res) => {
 
 router.get('/delete/:id', (req, res) => {
     req.body.habilitado = false
-    wooProducto.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
+    wooProducto.findOneAndUpdate({ id: req.params.id }, wooProductoMap(req.body, false), (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Eliminación satisfactoria`})
         else
