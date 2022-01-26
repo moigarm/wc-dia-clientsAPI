@@ -29,7 +29,7 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    wooClient.findOneAndUpdate({ _id: req.body._id }, req.body, (err, doc) => {
+    wooClient.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Actualización satisfactoria`})
         else
@@ -47,7 +47,7 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    wooClient.findById(req.params.id, (err, doc) => {
+    wooClient.find({ id: req.params.id }, (err, doc) => {
         if (err)
         res.json({status: 404, message: `No se encontró el registro : ' + ${err}`})
         res.json({status: 200, object: doc})
@@ -56,7 +56,7 @@ router.get('/:id', (req, res) => {
 
 router.delete('/delete/:id', (req, res) => {
     req.body.habilitado = false
-    wooClient.findOneAndUpdate({ _id: req.body._id }, req.body, (err, doc) => {
+    wooClient.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Eliminación satisfactoria`})
         else

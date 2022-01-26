@@ -75,5 +75,5 @@ export function wooProductoMap(wooProductoFromWebhook){
     newWooProducto.stock_status = wooProductoFromWebhook.stock_status
     newWooProducto._links.self = wooProductoFromWebhook._links.self
     newWooProducto._links.collection = wooProductoFromWebhook._links.collection
-
+    return newWooProducto
 }

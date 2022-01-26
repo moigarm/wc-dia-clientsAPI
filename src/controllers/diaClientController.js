@@ -26,7 +26,7 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
-    diaClient.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true }, (err, doc) => {
+    diaClient.findOneAndUpdate({ id: req.body.id }, req.body, { new: true }, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Actualización satisfactoria`})
         else
@@ -44,7 +44,7 @@ router.get('/list', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    diaClient.findById(req.params.id, (err, doc) => {
+    diaClient.find({ id: req.params.id }, (err, doc) => {
         if (err)
         res.json({status: 404, message: `No se encontró el registro : ' + ${err}`})
         res.json({status: 200, object: doc})
@@ -52,7 +52,8 @@ router.get('/:id', (req, res) => {
 })
 
 router.get('/delete/:id', (req, res) => {
-    diaClient.findByIdAndRemove(req.params.id, (err, doc) => {
+    req.body.habilitado = false
+    diaClient.findOneAndUpdate({ id: req.params.id }, req.body, (err, doc) => {
         if (!err)
         res.json({status: 200, message: `Eliminación satisfactoria`})
         else
