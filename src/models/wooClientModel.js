@@ -1,24 +1,30 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 var wooClient = new mongoose.Schema({
   id: {
-    type: Number
+    type: Number,
+    required: true,
   },
   email: {
-    type: String
+    type: String,
+    required: true,
   },
   PrimerNombre: {
-    type: String
+    type: String,
+    required: true,
   },
   PrimerApellido: {
-    type: String
+    type: String,
+    required: true,
   },
   username: {
-    type: String
+    type: String,
+    required: true,
   },
   NumeroCelular: {
-    type: String
-  }
-})
+    type: String,
+    required: true,
+  },
+});
 
-mongoose.model("wooClient", wooClient)
+mongoose.model("wooClient", wooClient);
