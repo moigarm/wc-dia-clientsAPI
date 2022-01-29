@@ -48,9 +48,9 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto.low_stock_amount = wooProductoFromWebhook.low_stock_amount;
   newWooProducto.sold_individually = wooProductoFromWebhook.sold_individually;
   newWooProducto.weight = wooProductoFromWebhook.weight;
-  newWooProducto.dimensions.length = wooProductoFromWebhook.dimensions.length;
-  newWooProducto.dimensions.width = wooProductoFromWebhook.dimensions.width;
-  newWooProducto.dimensions.height = wooProductoFromWebhook.dimensions.height;
+  newWooProducto.dimensions.length = wooProductoFromWebhook.dimensions?.length;
+  newWooProducto.dimensions.width = wooProductoFromWebhook.dimensions?.width;
+  newWooProducto.dimensions.height = wooProductoFromWebhook.dimensions?.height;
   newWooProducto.shipping_required = wooProductoFromWebhook.shipping_required;
   newWooProducto.shipping_taxable = wooProductoFromWebhook.shipping_taxable;
   newWooProducto.shipping_class = wooProductoFromWebhook.shipping_class;
@@ -76,8 +76,8 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto.related_ids = wooProductoFromWebhook.related_ids;
   newWooProducto.meta_data = wooProductoFromWebhook.meta_data;
   newWooProducto.stock_status = wooProductoFromWebhook.stock_status;
-  newWooProducto._links.self = wooProductoFromWebhook._links.self;
-  newWooProducto._links.collection = wooProductoFromWebhook._links.collection;
+  newWooProducto._links.self = wooProductoFromWebhook._links?.self;
+  newWooProducto._links.collection = wooProductoFromWebhook._links?.collection;
   return newWooProducto;
 }
 

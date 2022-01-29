@@ -3,13 +3,13 @@ require("dotenv").config();
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WooCommerce = new WooCommerceRestApi({
-    url: 'http://woocommerce.cu.ma', // Your store URL
+    url: process.env.WOOCOMMERCE_BASE_URL, // Your store URL
     consumerKey: process.env.CONSUMER_KEY, // Your consumer key
     consumerSecret: process.env.CONSUMER_SECRET, // Your consumer secret
     version: 'wc/v3' // WooCommerce WP REST API version
 })
 
-function crearProducto(obj){
+function crearWooProducto(obj){
     WooCommerce.post("products", obj)
   .then((response) => {
     let res = response.data
@@ -23,7 +23,7 @@ function crearProducto(obj){
   });
 }
 
-function actualizarProducto(id, obj){
+function actualizarWooProducto(id, obj){
     WooCommerce.put(`products/${id}`, obj)
     .then((response) => {
         let res = response.data
@@ -37,6 +37,6 @@ function actualizarProducto(id, obj){
     });
 }
 module.exports={
-    crearProducto,
-    actualizarProducto
+    crearWooProducto,
+    actualizarWooProducto
 }

@@ -1,20 +1,19 @@
 require('dotenv').config()
-let dialogFlowInstance = process.env.DIALOGFLOW_BASE_URL
+let BimanInstance = process.env.BIMAN_BASE_URL
 let wooCommerceInstance = process.env.WOOCOMMERCE_BASE_URL
 
-function comesFromCRM_DialogFlow(req){
-    let url = req.hostname
-    switch (url){
-        case dialogFlowInstance:
-            return "dia"
+function comesFromCRM_Biman(hostname){
+    switch (hostname){
+        case BimanInstance:
+            return "biman"
         case wooCommerceInstance:
             return "woo"
         default:
-            console.log(url)
+            console.log(hostname)
             return ""
     }
 }
 
 module.exports = {
-    comesFromCRM_DialogFlow
+    comesFromCRM_Biman
 }

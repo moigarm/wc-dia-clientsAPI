@@ -3,9 +3,7 @@ var router = express.Router()
 const mongoose = require('mongoose')
 const diaClient = mongoose.model('diaClient')
 const { diaClientMap } = require("../util/diaClientMapper");
-// BIMAN_C para Biman Create, BIMAN_U para Biman Update
-let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT
-let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT
+let bimanCreateClient = process.env.BIMAN_BASE + process.env.BIMAN_C_CLIENT
 
 router.post('/', (req, res) => {
     insertRecord(req, res)
@@ -20,7 +18,7 @@ function insertRecord(req, res) {
     let client = diaClientMap(req.body)
     client.save((err, doc) => {
         if (!err){
-            fetch(bimanCreateProduct, {
+            fetch(bimanCreateClient, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -31,6 +29,8 @@ function insertRecord(req, res) {
             }).then((response)=>{
                 let data = response.data
                 console.log(data)
+            }).catch((err)=>{
+                console.log(err)
             });
         }
         else
@@ -45,20 +45,20 @@ function updateRecord(req, res) {
     try{
     diaClient.findOneAndUpdate({ id: req.body.id }, diaClientMap(req.body), { new: true }, (err, doc) => {
         if (!err){
-            fetch(bimanCreateProduct, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                mode: 'cors',
-                body: JSON.stringify(doc)
-                }).then((response)=>{
-                    let data = response.data
-                    console.log(data)
-                }).catch((err)=>{
-                    console.log(err)
-                });
+            fetch(bimanUpdateProduct, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(doc)
+            }).then((response)=>{
+                let data = response.data
+                console.log(data)
+            }).catch((err)=>{
+                console.log(err)
+            });
         }
         else
         res.json({status: 404, message: `No se actualizó el registro : ' + ${err}`})

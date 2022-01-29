@@ -4,6 +4,11 @@ const mongoose = require("mongoose");
 const { filterObject } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
 const { wooProductoMap } = require("../util/wooProductoMapper");
+const { crearWooProducto, actualizarWooProducto} = require("../util/WooCommerceAPI")
+const { comesFromCRM_Biman } = require("../util/locations")
+// BIMAN_C para Biman Create, BIMAN_U para Biman Update
+let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT
+let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT
 
 router.post("/", (req, res) => {
   console.log(req.body);
@@ -19,7 +24,25 @@ function insertRecord(req, res) {
     
     let producto = wooProductoMap(req.body);
     producto.save((err, doc) => {
-      if (!err) res.json({ status: 200, message: `Inserción satisfactoria` });
+      if (!err){
+        if(comesFromCRM_Biman(req.hostname) == "biman"){
+        fetch(bimanCreateProduct, {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          mode: 'cors',
+          body: JSON.stringify(doc)
+          }).then((response)=>{
+              let data = response.data
+              console.log(data)
+          });
+        }else{
+          crearWooProducto(doc)
+        }
+        res.json({status: 200, message: doc})
+      }
       else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
     });
   } catch (error) {
@@ -36,8 +59,24 @@ function updateRecord(req, res) {
       wooProductoMap(req.body),
       { new: true },
       (err, doc) => {
-        if (!err)
-        res.json({ status: 200, message: `Actualización satisfactoria` });
+        if (!err){
+          if(comesFromCRM_Biman(req.hostname) == "biman"){
+            fetch(bimanUpdateProduct+"/"+id.req.body.id, {
+              method: 'PUT',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+              },
+              mode: 'cors',
+              body: JSON.stringify(doc)
+              }).then((response)=>{
+                  let data = response.data
+                  console.log(data)
+              });
+            }else{
+              actualizarWooProducto(doc)
+            }
+        }
         else
         res.json({
           status: 404,

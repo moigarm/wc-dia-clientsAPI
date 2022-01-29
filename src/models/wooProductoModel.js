@@ -47,13 +47,13 @@ var wooProducto = new mongoose.Schema({
         type: String
     },
     price: {
-        type: mongoose.Decimal128
+        type: String
     },
     regular_price: {
-        type: mongoose.Decimal128
+        type: String
     },
     sale_price: {
-        type: mongoose.Decimal128
+        type: String
     },
     date_on_sale_from: {
         type: String
@@ -197,9 +197,11 @@ var wooProducto = new mongoose.Schema({
         }
       },
     ],
-    images: {
-        type: [String]
-    },
+    images: [{
+        src: {
+            type: String
+        }
+    }],
     attributes: {
         type: [String]
     },
