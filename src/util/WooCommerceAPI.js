@@ -13,13 +13,12 @@ function crearWooProducto(obj){
     WooCommerce.post("products", obj)
   .then((response) => {
     let res = response.data
-    console.log(res)
-    return {response: res, error: ""}
+    console.log("Creando producto en WooCommerce")
+    return res
   })
   .catch((error) => {
     let err = error.response.data
     console.log(err)
-    return {response: {}, error: err}
   });
 }
 

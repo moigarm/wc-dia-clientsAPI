@@ -5,7 +5,8 @@ const { filterObject } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
 const { wooProductoMap } = require("../util/wooProductoMapper");
 const { crearWooProducto, actualizarWooProducto} = require("../util/WooCommerceAPI")
-const { comesFromCRM_Biman } = require("../util/locations")
+const { comesFromBiman_Woo } = require("../util/locations")
+const fetch = require("node-fetch")
 // BIMAN_C para Biman Create, BIMAN_U para Biman Update
 let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT
@@ -21,11 +22,10 @@ router.put("/update", (req, res) => {
 
 function insertRecord(req, res) {
   try {
-    
     let producto = wooProductoMap(req.body);
     producto.save((err, doc) => {
       if (!err){
-        if(comesFromCRM_Biman(req.hostname) == "biman"){
+        if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
         fetch(bimanCreateProduct, {
           method: 'POST',
           headers: {
@@ -39,6 +39,7 @@ function insertRecord(req, res) {
               console.log(data)
           });
         }else{
+          console.log("Crear producto en WooCommerce")
           crearWooProducto(doc)
         }
         res.json({status: 200, message: doc})
@@ -46,7 +47,7 @@ function insertRecord(req, res) {
       else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
     });
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
@@ -60,7 +61,7 @@ function updateRecord(req, res) {
       { new: true },
       (err, doc) => {
         if (!err){
-          if(comesFromCRM_Biman(req.hostname) == "biman"){
+          if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
             fetch(bimanUpdateProduct+"/"+id.req.body.id, {
               method: 'PUT',
               headers: {

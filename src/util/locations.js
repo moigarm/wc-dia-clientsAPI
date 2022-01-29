@@ -2,18 +2,25 @@ require('dotenv').config()
 let BimanInstance = process.env.BIMAN_BASE_URL
 let wooCommerceInstance = process.env.WOOCOMMERCE_BASE_URL
 
-function comesFromCRM_Biman(hostname){
-    switch (hostname){
+function comesFromBiman_Woo(origin){
+    console.log("El origen es: "+origin)
+    let type = ""
+    switch (origin){
         case BimanInstance:
-            return "biman"
+            type = "biman"
+            break
         case wooCommerceInstance:
-            return "woo"
+            type = "woo"
+            break
         default:
-            console.log(hostname)
-            return ""
+            console.log("El origen es: "+origin)
+            break
     }
+    // Eliminar este tipo de comentarios por 
+    console.log("Type is: "+type)
+    return type
 }
 
 module.exports = {
-    comesFromCRM_Biman
+    comesFromBiman_Woo
 }
