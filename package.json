@@ -5,6 +5,7 @@
     "dev": "nodemon src/server"
   },
   "dependencies": {
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv": "^14.2.0",
     "express": "^4.17.2",

@@ -1,18 +1,31 @@
 const mongoose = require("mongoose");
 
 var diaClient = new mongoose.Schema({
-  nombreCliente: {
+  firstName: {
     type: String,
   },
-  correo: {
+  lastName: {
     type: String,
   },
-  telefono: {
+  displayName: {
     type: String,
   },
-  temasDeInteres: {
-    type: [String],
+  email: {
+    type: String,
   },
+  phoneNumbers: [
+    {
+      e164PhoneNumber: {
+        type: String
+      },
+      extension: {
+        type: String
+      },
+      preferredDomesticCarrierCode: {
+        type: String
+      }
+    }
+  ],
   habilitado: {
     type: Boolean,
   },

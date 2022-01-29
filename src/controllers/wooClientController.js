@@ -13,64 +13,89 @@ router.put("/update", (req, res) => {
 });
 
 function insertRecord(req, res) {
-  let client = wooClientMap(req.body);
-  client.save((err, doc) => {
+  try {
+    
+    let client = wooClientMap(req.body);
+    client.save((err, doc) => {
     if (!err) res.json({ status: 200, message: `Inserción satisfactoria` });
     else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
-  });
+    });
+  } catch (error) {
+    
+  }
 }
 
 function updateRecord(req, res) {
-  wooClient.findOneAndUpdate(
-    { id: req.params.id },
-    wooClientMap(req.body),
-    (err, doc) => {
-      if (!err)
+  try {
+    
+    wooClient.findOneAndUpdate(
+      { id: req.params.id },
+      wooClientMap(req.body),
+      (err, doc) => {
+        if (!err)
         res.json({ status: 200, message: `Actualización satisfactoria` });
-      else
+        else
         res.json({
           status: 404,
           message: `No se actualizó el registro : ' + ${err}`,
         });
+      }
+      );
+    } catch (error) {
+      
     }
-  );
 }
 
 router.get("/list", (req, res) => {
-  wooClient.find((err, docs) => {
-    if (err)
+  try {
+    
+    wooClient.find((err, docs) => {
+      if (err)
       res.json({
         status: 404,
         message: `Error durante la recuperación de datos : ' + ${err}`,
       });
-    res.json({ status: 200, objects: docs });
-  });
+      res.json({ status: 200, objects: docs });
+    });
+  } catch (error) {
+    
+  }
 });
 
 router.get("/:id", (req, res) => {
-  wooClient.find({ id: req.params.id }, (err, doc) => {
-    if (err)
+  try {
+    
+    wooClient.find({ id: req.params.id }, (err, doc) => {
+      if (err)
       res.json({
         status: 404,
         message: `No se encontró el registro : ' + ${err}`,
       });
-    res.json({ status: 200, object: doc });
-  });
+      res.json({ status: 200, object: doc });
+    });
+  } catch (error) {
+    
+  }
 });
 
 router.delete("/delete/:id", (req, res) => {
-  wooClient.findOneAndUpdate(
-    { id: req.params.id },
-    wooClientMap(req.body, false),
-    (err, doc) => {
-      if (!err) res.json({ status: 200, message: `Eliminación satisfactoria` });
-      else
+  try {
+    
+    wooClient.findOneAndUpdate(
+      { id: req.params.id },
+      wooClientMap(req.body, false),
+      (err, doc) => {
+        if (!err) res.json({ status: 200, message: `Eliminación satisfactoria` });
+        else
         res.json({
           status: 404,
           message: `No se eliminó el registro : ' + ${err}`,
         });
+      }
+      );
+    } catch (error) {
+      
     }
-  );
 });
 
 module.exports = router;
