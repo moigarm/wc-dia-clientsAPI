@@ -21,7 +21,7 @@ function insertRecord(req, res) {
     else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
     });
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
@@ -42,7 +42,7 @@ function updateRecord(req, res) {
       }
       );
     } catch (error) {
-      
+      console.log(error)
     }
 }
 
@@ -58,7 +58,7 @@ router.get("/list", (req, res) => {
       res.json({ status: 200, objects: docs });
     });
   } catch (error) {
-    
+    console.log(error)
   }
 });
 
@@ -74,7 +74,7 @@ router.get("/:id", (req, res) => {
       res.json({ status: 200, object: doc });
     });
   } catch (error) {
-    
+    console.log(error)
   }
 });
 
@@ -94,7 +94,7 @@ router.delete("/delete/:id", (req, res) => {
       }
       );
     } catch (error) {
-      
+      console.log(error)
     }
 });
 

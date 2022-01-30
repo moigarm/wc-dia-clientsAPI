@@ -1,7 +1,7 @@
 const express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
-const { filterObject } = require("../util/utils");
+const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
 const { wooProductoMap } = require("../util/wooProductoMapper");
 const { crearWooProducto, actualizarWooProducto} = require("../util/WooCommerceAPI")
@@ -21,7 +21,12 @@ router.put("/update", (req, res) => {
 });
 
 function insertRecord(req, res) {
+  let noNew = false
   try {
+    producto.find({id: req.body.id}, (err, doc)=>{
+      if(doc.id == req.body.id) noNew = true
+    })
+    if(!noNew){
     let producto = wooProductoMap(req.body);
     producto.save((err, doc) => {
       if (!err){
@@ -46,14 +51,23 @@ function insertRecord(req, res) {
       }
       else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
     });
+  }
   } catch (error) {
     console.log(error)
   }
 }
 
 function updateRecord(req, res) {
+  let recentlyUpdated = false
   console.log(filterObject(req.body, ["permalink"]));
-  
+  producto.find({id: req.body.id}, (err, doc)=>{
+    // Último parámetro es para propiedades que no necesitan compararse
+    // ejemplo: date_created, date_created_gmt, date_modified, date_modified_gmt
+    // por que se quiere comparar si en realidad las propiedades fueron modificadas
+    recentlyUpdated = ObjCompare(wooProductoMap(req.body), doc, ["date_modified", "date_modified_gmt"])
+  })
+  // Si no se acaban de actualizar
+  if(!recentlyUpdated){
   try {
     wooProducto.findOneAndUpdate(
       { id: req.body.id },
@@ -75,6 +89,7 @@ function updateRecord(req, res) {
                   console.log(data)
               });
             }else{
+              console.log("Actualizando producto en WooCommerce")
               actualizarWooProducto(doc)
             }
         }
@@ -86,8 +101,9 @@ function updateRecord(req, res) {
       }
   );
     } catch (error) {
-      
+      console.log(error)
     }
+  }
 }
 
 router.get("/list", (req, res) => {
@@ -102,7 +118,7 @@ router.get("/list", (req, res) => {
       res.json({ status: 200, objects: docs });
     });
   } catch (error) {
-    
+    console.log(error)
   }
 });
 
