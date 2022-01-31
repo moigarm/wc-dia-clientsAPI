@@ -128,6 +128,7 @@ var wooProducto = new mongoose.Schema({
         type: String
     },
     dimensions: {
+        _id: false,
         length: {
             type: String
         },
@@ -173,6 +174,7 @@ var wooProducto = new mongoose.Schema({
     },
     categories: [
       {
+          _id:false,
         id: {
             type: String
         },
@@ -186,6 +188,7 @@ var wooProducto = new mongoose.Schema({
     ],
     tags: [
       {
+        _id:false,
         id: {
             type: String
         },
@@ -198,6 +201,7 @@ var wooProducto = new mongoose.Schema({
       },
     ],
     images: [{
+        _id:false,
         src: {
             type: String
         }
@@ -232,6 +236,7 @@ var wooProducto = new mongoose.Schema({
     _links: {
       self: [
         {
+            _id:false,
           href: {
             type: String
         },
@@ -239,6 +244,7 @@ var wooProducto = new mongoose.Schema({
       ],
       collection: [
         {
+            _id:false,
           href: {
             type: String
         },

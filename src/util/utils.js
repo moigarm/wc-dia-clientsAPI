@@ -1,5 +1,7 @@
 function filterObject(Object, keys) {
+  if(keys.length == 0)return Object
   keys.forEach((key) => {
+    console.log(key)
     delete Object[key];
   });
 

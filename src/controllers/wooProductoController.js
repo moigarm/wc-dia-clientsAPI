@@ -7,6 +7,7 @@ const { wooProductoMap } = require("../util/wooProductoMapper");
 const { crearWooProducto, actualizarWooProducto} = require("../util/WooCommerceAPI")
 const { comesFromBiman_Woo } = require("../util/locations")
 const fetch = require("node-fetch")
+
 // BIMAN_C para Biman Create, BIMAN_U para Biman Update
 let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT
@@ -20,33 +21,35 @@ router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
 
-function insertRecord(req, res) {
+async function insertRecord(req, res) {
   let noNew = false
   try {
-    producto.find({id: req.body.id}, (err, doc)=>{
+    let producto = wooProductoMap(req.body);
+    let responseFromService = {}
+    wooProducto.find({id: req.body.id}, (err, doc)=>{
       if(doc.id == req.body.id) noNew = true
     })
     if(!noNew){
-    let producto = wooProductoMap(req.body);
-    producto.save((err, doc) => {
+    if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
+      let response = fetch(bimanCreateProduct, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(producto)
+        })
+        let data = await response.data
+        console.log(data)
+        responseFromService = producto
+      }else{
+        responseFromService = await crearWooProducto(producto)
+      }
+    let producto2 = wooProductoMap(responseFromService)
+
+    producto2.save((err, doc) => {
       if (!err){
-        if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
-        fetch(bimanCreateProduct, {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          },
-          mode: 'cors',
-          body: JSON.stringify(doc)
-          }).then((response)=>{
-              let data = response.data
-              console.log(data)
-          });
-        }else{
-          console.log("Crear producto en WooCommerce")
-          crearWooProducto(doc)
-        }
         res.json({status: 200, message: doc})
       }
       else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
@@ -57,52 +60,61 @@ function insertRecord(req, res) {
   }
 }
 
-function updateRecord(req, res) {
+async function updateRecord(req, res) {
   let recentlyUpdated = false
-  console.log(filterObject(req.body, ["permalink"]));
-  producto.find({id: req.body.id}, (err, doc)=>{
+  let responseFromService = {}
+  let producto = wooProductoMap(req.body)
+  try {
+    // Elimina propiedades que no se desea guardar
+    // (se tiene que agregar con ObjCompare en caso de no ser un arreglo vacío)
+  //console.log(filterObject(req.body, ["permalink"]));
+  wooProducto.find({id: req.body.id}, (err, doc)=>{
     // Último parámetro es para propiedades que no necesitan compararse
     // ejemplo: date_created, date_created_gmt, date_modified, date_modified_gmt
     // por que se quiere comparar si en realidad las propiedades fueron modificadas
-    recentlyUpdated = ObjCompare(wooProductoMap(req.body), doc, ["date_modified", "date_modified_gmt"])
+    recentlyUpdated = ObjCompare(producto, doc, ["date_modified", "date_modified_gmt"])
+    if(err)console.log(err)
   })
+  
   // Si no se acaban de actualizar
   if(!recentlyUpdated){
-  try {
+
+    if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
+      let response = fetch(bimanUpdateProduct+"/"+id.req.body.id, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        body: JSON.stringify(producto)
+      })
+        let data = await response.data
+        responseFromService = data
+      }else{
+        responseFromService = await actualizarWooProducto(producto.id, producto)
+      }
+      console.log("Response from the service is:")
+      let producto2 = wooProductoMap(responseFromService)
+      producto2._id = req.body._id
     wooProducto.findOneAndUpdate(
-      { id: req.body.id },
-      wooProductoMap(req.body),
+      { _id: producto2._id },
+      producto2,
       { new: true },
       (err, doc) => {
         if (!err){
-          if(comesFromBiman_Woo(req.header('x-wc-webhook-source')) == "biman"){
-            fetch(bimanUpdateProduct+"/"+id.req.body.id, {
-              method: 'PUT',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-              },
-              mode: 'cors',
-              body: JSON.stringify(doc)
-              }).then((response)=>{
-                  let data = response.data
-                  console.log(data)
-              });
-            }else{
-              console.log("Actualizando producto en WooCommerce")
-              actualizarWooProducto(doc)
-            }
+          console.log(doc)
+          res.json({status: 200, message: doc})
         }
-        else
-        res.json({
-          status: 404,
-          message: `No se actualizó el registro : ' + ${err}`,
-        });
+        else{
+          console.log(err)
+          res.json({status: 404, message: `No se actualizó el registro : ' + ${err}`});
+        }
       }
-  );
-    } catch (error) {
-      console.log(error)
-    }
+    );
+  }
+  } catch (error) {
+    console.log(error)
   }
 }
 

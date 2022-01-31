@@ -10,6 +10,9 @@ const diaClientController = require("./controllers/diaClientController");
 const wooClientController = require("./controllers/wooClientController");
 const wooProductoController = require("./controllers/wooProductoController");
 
+//Endpoint for testing purposes
+const dialogFlowController = require("./controllers/dialogFlowController");
+
 let allowedOrigins = [""];
 
 var app = express();
@@ -43,3 +46,4 @@ app.listen(process.env.PORT, () => {
 app.use("/diaClient", diaClientController);
 app.use("/wooClient", wooClientController);
 app.use("/wooProducto", wooProductoController);
+app.use("/dialogFlow", dialogFlowController)

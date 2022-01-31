@@ -9,31 +9,26 @@ const WooCommerce = new WooCommerceRestApi({
     version: 'wc/v3' // WooCommerce WP REST API version
 })
 
-function crearWooProducto(obj){
-    WooCommerce.post("products", obj)
-  .then((response) => {
-    let res = response.data
-    console.log("Creando producto en WooCommerce")
-    return res
-  })
-  .catch((error) => {
-    let err = error.response.data
-    console.log(err)
-  });
+async function crearWooProducto(obj){
+  let res1 = {}
+  try {
+    let datos = await WooCommerce.post("products", obj)
+    res1 = datos.data
+  } catch (error) {
+    console.log(error)
+  }
+  return res1
 }
 
-function actualizarWooProducto(id, obj){
-    WooCommerce.put(`products/${id}`, obj)
-    .then((response) => {
-        let res = response.data
-        console.log(res)
-        return {response: res, error: ""}
-    })
-    .catch((error) => {
-        let err = error.response.data
-        console.log(err)
-        return {response: {}, error: err}
-    });
+async function actualizarWooProducto(id, obj){
+  let res1 = {}
+  try {
+    let datos = await WooCommerce.put(`products/${id}`, obj)
+    res1 = datos.data
+  } catch (error) {
+    console.log(error)
+  }
+  return res1
 }
 module.exports={
     crearWooProducto,

@@ -3,7 +3,9 @@ var router = express.Router()
 const mongoose = require('mongoose')
 const diaClient = mongoose.model('diaClient')
 const { diaClientMap } = require("../util/diaClientMapper");
+const { getParamters } = require("../util/dialogClient");
 let bimanCreateClient = process.env.BIMAN_BASE + process.env.BIMAN_C_CLIENT
+let bimanUpdateClient = process.env.BIMAN_BASE + process.env.BIMAN_U_CLIENT
 
 router.post('/', (req, res) => {
     insertRecord(req, res)
@@ -14,8 +16,9 @@ router.put('/update', (req, res) => {
 })
 
 function insertRecord(req, res) {
+    let params = getParamters(req.body)
     try {
-    let client = diaClientMap(req.body)
+    let client = diaClientMap(params)
     client.save((err, doc) => {
         if (!err){
             fetch(bimanCreateClient, {
@@ -32,6 +35,7 @@ function insertRecord(req, res) {
             }).catch((err)=>{
                 console.log(err)
             });
+            res.json({status: 200, message: doc})
         }
         else
         res.json({status: 404, message: `Error en Inserción : ' + ${err}`})
@@ -42,10 +46,12 @@ function insertRecord(req, res) {
 }
 
 function updateRecord(req, res) {
+    let params = getParamters(req.body)
     try{
-    diaClient.findOneAndUpdate({ id: req.body.id }, diaClientMap(req.body), { new: true }, (err, doc) => {
+        let client = diaClientMap(params)
+    diaClient.findOneAndUpdate({ _id: client._id }, client , { new: true }, (err, doc) => {
         if (!err){
-            fetch(bimanUpdateProduct, {
+            fetch(bimanUpdateClient, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
