@@ -40,10 +40,10 @@ app.use(
 app.use(bodyparser.json());
 
 app.listen(process.env.PORT, () => {
-  console.log("Servidor Express inció en puerto : 3000");
+  console.log(`Servidor Express inció en puerto : ${process.env.PORT}`);
 });
 
 app.use("/diaClient", diaClientController);
 app.use("/wooClient", wooClientController);
 app.use("/wooProducto", wooProductoController);
-app.use("/dialogFlow", dialogFlowController)
+app.use("/dialogFlow", dialogFlowController);
