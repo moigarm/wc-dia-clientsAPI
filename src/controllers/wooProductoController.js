@@ -7,7 +7,6 @@ const { wooProductoMap, bimanProductoToWooBatch } = require("../util/wooProducto
 const {
   crearWooProducto,
   actualizarWooProducto,
-  WooProductoBatch,
   getWooStatus,
   WooProductoBatch2
 } = require("../util/WooCommerceAPI");
@@ -29,10 +28,6 @@ router.post("/", (req, res) => {
 
 router.put("/update", (req, res) => {
   updateRecord(req, res);
-});
-
-router.post("/batch", (req, res) => {
-  RecordsBatch(req, res);
 });
 
 router.get("/batchme", (req, res) => {
