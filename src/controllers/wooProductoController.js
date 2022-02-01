@@ -3,11 +3,13 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
-const { wooProductoMap } = require("../util/wooProductoMapper");
+const { wooProductoMap, bimanProductoToWooBatch } = require("../util/wooProductoMapper");
 const {
   crearWooProducto,
   actualizarWooProducto,
   WooProductoBatch,
+  getWooStatus,
+  WooProductoBatch2
 } = require("../util/WooCommerceAPI");
 const { comesFromBiman_Woo } = require("../util/locations");
 const fetch = require("node-fetch");
@@ -17,6 +19,9 @@ let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT;
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT;
 let bimanProductos = process.env.BIMAN_PRODUCTOS;
 
+router.get("/status", (req, res)=>{
+  res.json({status: 200, message: getWooStatus()})
+})
 router.post("/", (req, res) => {
   console.log(req.body);
   insertRecord(req, res);
@@ -31,10 +36,11 @@ router.post("/batch", (req, res) => {
 });
 
 router.get("/batchme", (req, res) => {
-  CreateProductoBatch(req, res);
+  CrearProductoBatch(req, res);
 });
 
 async function insertRecord(req, res) {
+  console.log(req.body)
   let noNew = false;
   try {
     let producto = wooProductoMap(req.body);
@@ -57,6 +63,7 @@ async function insertRecord(req, res) {
         console.log(data);
         responseFromService = producto;
       } else {
+        console.log("Crear producto ps")
         responseFromService = await crearWooProducto(producto);
       }
       let producto2 = wooProductoMap(responseFromService);
@@ -206,7 +213,7 @@ async function RecordsBatch(req, res) {
 async function CrearProductoBatch(req, res) {
   let responseFromService = {};
   try {
-    let response = fetch(bimanProductos, {
+    let response = await fetch(bimanProductos, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -214,12 +221,14 @@ async function CrearProductoBatch(req, res) {
       },
       mode: "cors",
     });
-    let data = await response.data;
-    let createProducts = { create: data };
-    responseFromService = await WooProductoBatch(createProducts);
+    console.log("Response is")
+    let data = await response.json();
+    let productos = bimanProductoToWooBatch(data)
+    responseFromService = await WooProductoBatch2(productos);
+    res.json({status:200, message: responseFromService})
+    return 0
     wooProducto.insertMany(responseFromService.create, (err, docs) => {
       if (!err) {
-        console.log(docs);
         res.json({ status: 200, message: docs });
       } else {
         console.log(err);
@@ -230,7 +239,8 @@ async function CrearProductoBatch(req, res) {
       }
     });
   } catch (error) {
-    console.log(error);
+    console.log("This shit failed")
+    //console.log(error);
   }
 }
 

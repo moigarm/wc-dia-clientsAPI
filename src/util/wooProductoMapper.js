@@ -81,6 +81,29 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   return newWooProducto;
 }
 
+function bimanProductoToWoo(objeto){
+  let newObj = new wooProducto()
+  newObj.internal_id = objeto.ID,
+  newObj.sku = objeto.CodigoSap,
+  newObj.name = objeto.NombreComercial,
+  newObj.stock_quantity = objeto.existencia,
+  newObj.price = objeto.VentaUnitaria,
+  newObj.tasaiva = objeto.tasaIva,
+  newObj.nomgenerico = objeto.nomGenerico
+  return newObj
+}
+
+function bimanProductoToWooBatch(objetos){
+  let productosArray = []
+  objetos.forEach((key, i)=>{
+    productosArray[i] = bimanProductoToWoo(key)
+  })
+  console.log(productosArray[0])
+  return {create: productosArray}
+}
+
 module.exports = {
   wooProductoMap,
+  bimanProductoToWoo,
+  bimanProductoToWooBatch
 };

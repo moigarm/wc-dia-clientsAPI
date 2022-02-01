@@ -4,7 +4,16 @@ var wooProducto = new mongoose.Schema({
     id: {
         type: String
     },
+    internal_id: {
+        type: String
+    },
     name: {
+        type: String
+    },
+    tasaiva:{
+        type: String
+    },
+    nomgenerico: {
         type: String
     },
     slug: {
