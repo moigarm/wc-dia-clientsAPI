@@ -52,9 +52,6 @@ async function actualizarWooProducto(id, obj) {
 async function WooProductoBatch(objs) {
   let res1 = [];
   try {
-    // objs.forEach((element, i) => {
-    //   res1[i] = crearWooProducto(element)
-    // });
     await Promise.all(objs.map(async (element, i) => {
       res1[i] = await crearWooProducto(element)
     }))
@@ -68,19 +65,19 @@ async function WooProductoBatch(objs) {
 
 async function WooProductoBatch2(objs) {
   let atemp = objs.create
+  let response = []
   console.log(atemp.length)
-  let response = "fail"
   let variable = 100
   try {
     for (let increment = 0; increment < objs.create.length; increment+=variable) {
       let temp = { create: atemp.slice(increment, increment+variable), update: [], delete: []}
-      await WooCommerce.post("products/batch", temp)
+      let data = await WooCommerce.post("products/batch", temp)
+      response[increment/variable] = data.data
       console.log("round: "+increment/variable)
     }
-    response = "success"
   } catch (error) {
     console.log("Error on batch")
-    //console.log(error);
+    console.log(error);
   }
   return response
 }

@@ -145,71 +145,6 @@ async function updateRecord(req, res) {
   }
 }
 
-async function RecordsBatch(req, res) {
-  let recentlyUpdated = false;
-  let responseFromService = {};
-  let producto = wooProductoMap(req.body);
-  try {
-    // Elimina propiedades que no se desea guardar
-    // (se tiene que agregar con ObjCompare en caso de no ser un arreglo vacío)
-    //console.log(filterObject(req.body, ["permalink"]));
-    wooProducto.find({ id: req.body.id }, (err, doc) => {
-      // Último parámetro es para propiedades que no necesitan compararse
-      // ejemplo: date_created, date_created_gmt, date_modified, date_modified_gmt
-      // por que se quiere comparar si en realidad las propiedades fueron modificadas
-      recentlyUpdated = ObjCompare(producto, doc, [
-        "date_modified",
-        "date_modified_gmt",
-      ]);
-      if (err) console.log(err);
-    });
-
-    // Si no se acaban de actualizar
-    if (!recentlyUpdated) {
-      if (comesFromBiman_Woo(req.header("x-wc-webhook-source")) == "biman") {
-        let response = fetch(bimanUpdateProduct + "/" + id.req.body.id, {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: JSON.stringify(producto),
-        });
-        let data = await response.data;
-        responseFromService = data;
-      } else {
-        responseFromService = await actualizarWooProducto(
-          producto.id,
-          producto
-        );
-      }
-      console.log("Response from the service is:");
-      let producto2 = wooProductoMap(responseFromService);
-      producto2._id = req.body._id;
-      wooProducto.findOneAndUpdate(
-        { _id: producto2._id },
-        producto2,
-        { new: true },
-        (err, doc) => {
-          if (!err) {
-            console.log(doc);
-            res.json({ status: 200, message: doc });
-          } else {
-            console.log(err);
-            res.json({
-              status: 404,
-              message: `No se actualizó el registro : ' + ${err}`,
-            });
-          }
-        }
-      );
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 async function CrearProductoBatch(req, res) {
   let responseFromService = {};
   try {
@@ -221,26 +156,27 @@ async function CrearProductoBatch(req, res) {
       },
       mode: "cors",
     });
-    console.log("Response is")
     let data = await response.json();
     let productos = bimanProductoToWooBatch(data)
     responseFromService = await WooProductoBatch2(productos);
-    res.json({status:200, message: responseFromService})
-    return 0
-    wooProducto.insertMany(responseFromService.create, (err, docs) => {
-      if (!err) {
-        res.json({ status: 200, message: docs });
-      } else {
-        console.log(err);
-        res.json({
-          status: 404,
-          message: `No se insertaron los registros de manera adecuada : ' + ${err}`,
-        });
-      }
+    let finalResult = []
+    responseFromService.forEach((element, i) => {
+      wooProducto.insertMany(element, (err, docs) => {
+        if (!err) {
+          finalResult[i] = docs
+        } else {
+          console.log(err);
+          res.json({
+            status: 404,
+            message: `No se insertaron los registros de manera adecuada a MongoDB : ' + ${err}`,
+          });
+        }
+      });
     });
+    res.json({status:200, message: finalResult})
   } catch (error) {
-    console.log("This shit failed")
-    //console.log(error);
+    console.log("Error desconocido")
+    console.log(error);
   }
 }
 
