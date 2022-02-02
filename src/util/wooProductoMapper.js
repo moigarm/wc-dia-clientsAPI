@@ -81,21 +81,32 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   return newWooProducto;
 }
 function newbimanProductoToWoo(objeto){
-  console.log(objeto)
+  // console.log(objeto)
   let newObj = new wooProducto()
   newObj.internal_id = objeto.ID,
-  newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
-  newObj.categories[0] = {name: objeto.nomTipo},
-  newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
-  newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
+  // newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
+  // newObj.categories[0] = {name: objeto.nomTipo},
+  // newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
+  // newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
+  // newObj.existencia = objeto.existencia, // agregar a WooCommerce
   newObj.stock_quantity = objeto.Cantidad,
   newObj.sku = objeto.CodigoSap, 
   newObj.name = objeto.NombreComercial,
-  newObj.existencia = objeto.existencia, // agregar a WooCommerce
   newObj.regular_price = objeto.VentaUnitaria,
-  newObj.tasaiva = objeto.tasaIva,
+  //newObj.tasaiva = objeto.tasaIva,
+  // newObj.attributes=[{
+  //   id:2,
+  //   name:"nombre_almacen",
+  //   option:"PERRO"
+  // }]
   //newObj.nomgenerico = objeto.nomGenerico
-  newObj.meta_data = [{key: "nombre_generico", value: objeto.nomGenerico}] // agregar a WooCommerce
+  // newObj.meta_data = [
+  //   {
+  //     key: "nombre_generico", 
+  //     value: "test"
+  //   }
+  // ] // agregar a WooCommerce
+  console.log(newObj)
   return newObj
 }
 
@@ -115,7 +126,6 @@ function bimanProductoToWoo(objeto){
   newObj.nomgenerico = objeto.nomGenerico // agregar a WooCommerce
   return newObj
 
-  // nombreAlmacen, //
   // ID,
   // CodigoSap,
   // NombreComercial,
@@ -123,6 +133,7 @@ function bimanProductoToWoo(objeto){
   // VentaUnitaria,
   // tasaIva,
   // existencia,
+  // nombreAlmacen, //
   // nomTipo,//
   // Idservicio,//
   // tasaDescuento,//
@@ -144,3 +155,4 @@ module.exports = {
   bimanProductoToWooBatch,
   newbimanProductoToWoo
 };
+

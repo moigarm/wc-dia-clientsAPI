@@ -12,6 +12,7 @@
     "dotenv": "^14.2.0",
     "express": "^4.17.2",
     "mongoose": "^6.1.7",
+    "node-cron": "^3.0.0",
     "node-fetch": "2.6.7",
     "openid-client": "^5.1.2"
   },
