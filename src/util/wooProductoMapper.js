@@ -80,17 +80,53 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto._links.collection = wooProductoFromWebhook._links?.collection;
   return newWooProducto;
 }
+function newbimanProductoToWoo(objeto){
+  console.log(objeto)
+  let newObj = new wooProducto()
+  newObj.internal_id = objeto.ID,
+  newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
+  newObj.categories[0] = {name: objeto.nomTipo},
+  newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
+  newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
+  newObj.stock_quantity = objeto.Cantidad,
+  newObj.sku = objeto.CodigoSap, 
+  newObj.name = objeto.NombreComercial,
+  newObj.existencia = objeto.existencia, // agregar a WooCommerce
+  newObj.regular_price = objeto.VentaUnitaria,
+  newObj.tasaiva = objeto.tasaIva,
+  //newObj.nomgenerico = objeto.nomGenerico
+  newObj.meta_data = [{key: "nombre_generico", value: objeto.nomGenerico}] // agregar a WooCommerce
+  return newObj
+}
 
 function bimanProductoToWoo(objeto){
   let newObj = new wooProducto()
   newObj.internal_id = objeto.ID,
-  newObj.sku = objeto.CodigoSap,
+  newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
+  newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}],
+  newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
+  newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
+  newObj.stock_quantity = objeto.Cantidad,
+  newObj.sku = objeto.CodigoSap, 
   newObj.name = objeto.NombreComercial,
-  newObj.stock_quantity = objeto.existencia,
-  newObj.price = objeto.VentaUnitaria,
+  newObj.existencia = objeto.existencia, // agregar a WooCommerce
+  newObj.regular_price = objeto.VentaUnitaria,
   newObj.tasaiva = objeto.tasaIva,
-  newObj.nomgenerico = objeto.nomGenerico
+  newObj.nomgenerico = objeto.nomGenerico // agregar a WooCommerce
   return newObj
+
+  // nombreAlmacen, //
+  // ID,
+  // CodigoSap,
+  // NombreComercial,
+  // nomGenerico,
+  // VentaUnitaria,
+  // tasaIva,
+  // existencia,
+  // nomTipo,//
+  // Idservicio,//
+  // tasaDescuento,//
+  // Cantidad//
 }
 
 function bimanProductoToWooBatch(objetos){
@@ -105,5 +141,6 @@ function bimanProductoToWooBatch(objetos){
 module.exports = {
   wooProductoMap,
   bimanProductoToWoo,
-  bimanProductoToWooBatch
+  bimanProductoToWooBatch,
+  newbimanProductoToWoo
 };

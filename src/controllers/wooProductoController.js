@@ -3,7 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
-const { wooProductoMap, bimanProductoToWooBatch } = require("../util/wooProductoMapper");
+const { wooProductoMap, bimanProductoToWooBatch, newbimanProductoToWoo } = require("../util/wooProductoMapper");
 const {
   crearWooProducto,
   actualizarWooProducto,
@@ -38,7 +38,7 @@ async function insertRecord(req, res) {
   console.log(req.body)
   let noNew = false;
   try {
-    let producto = wooProductoMap(req.body);
+    let producto = newbimanProductoToWoo(req.body);
     let responseFromService = {};
     wooProducto.find({ id: req.body.id }, (err, doc) => {
       if (doc.id == req.body.id) noNew = true;
@@ -61,7 +61,7 @@ async function insertRecord(req, res) {
         console.log("Crear producto ps")
         responseFromService = await crearWooProducto(producto);
       }
-      let producto2 = wooProductoMap(responseFromService);
+      let producto2 = newbimanProductoToWoo(responseFromService);
 
       producto2.save((err, doc) => {
         if (!err) {
@@ -190,9 +190,9 @@ router.get("/list", (req, res) => {
   }
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:sku", (req, res) => {
   try {
-    wooProducto.find({ id: req.params.id }, (err, doc) => {
+    wooProducto.find({ sku: req.params.sku }, (err, doc) => {
       if (err)
         res.json({
           status: 404,
