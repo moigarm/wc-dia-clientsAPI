@@ -81,10 +81,22 @@ async function WooProductoBatch2(objs) {
   }
   return response
 }
+
+
+function setCategories(data){
+  WooCommerce.post("products/categories", data)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    console.log(error.response.data);
+  });
+}
 module.exports = {
   crearWooProducto,
   actualizarWooProducto,
   WooProductoBatch,
   getWooStatus,
   WooProductoBatch2,
+  setCategories
 };

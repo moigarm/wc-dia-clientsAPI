@@ -216,7 +216,11 @@ var wooProducto = new mongoose.Schema({
         }
     }],
     attributes: {
-        type: [String]
+        type: [{
+            id:Number,
+            name:String,
+            option:String
+        }]
     },
     default_attributes: {
         type: [String]
@@ -237,7 +241,11 @@ var wooProducto = new mongoose.Schema({
         type: [String]
     },
     meta_data: {
-        type: [String]
+        type: [{
+            key:String,
+            value:String,
+            _id: false
+        }]
     },
     stock_status: {
         type: String
