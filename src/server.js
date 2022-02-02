@@ -9,39 +9,79 @@ const cors = require("cors");
 const diaClientController = require("./controllers/diaClientController");
 const wooClientController = require("./controllers/wooClientController");
 const wooProductoController = require("./controllers/wooProductoController");
-const wooOrderController = require("./controllers/wooOrderController");
 
 //Endpoint for testing purposes
 const dialogFlowController = require("./controllers/dialogFlowController");
-const GetAccessToken = require("./util/accessToken");
-const { default: axios } = require("axios");
+
+const getCoolecheraProducts = require("./util/getCoolecheraProducts");
+var cron = require("node-cron");
+const mongoose = require("mongoose");
+const wooProducto = mongoose.model("wooProducto");
+const bimanProducto = require("./models/bimmanProductoModel");
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
+const {
+  bimanProductoToWoo,
+  bimanProductoToWooNoId,
+  bimanProductoToWooBatch,
+} = require("./util/wooProductoMapper");
+
+const WooCommerce = new WooCommerceRestApi({
+  url: process.env.WOOCOMMERCE_BASE_URL, // Your store URL
+  consumerKey: process.env.CONSUMER_KEY, // Your consumer key
+  consumerSecret: process.env.CONSUMER_SECRET, // Your consumer secret
+  version: "wc/v3", // WooCommerce WP REST API version
+});
 
 let allowedOrigins = [""];
 
-(async () => {
-  console.log(await GetAccessToken());
-  const params = new URLSearchParams();
-  params.append("IdUnidad", 2);
-  params.append("IdSede", 25);
-  params.append("IdProducto", 0);
+cron.schedule("*/10 * * * * *", async () => {
+  console.log("hola");
 
-  const products = await axios.post(
-    "https://biman.coolechera.com:3210/api/productos/porUnidadServicio",
-    params,
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
+  const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  let coolecheraProds = await getCoolecheraProducts();
+
+  if (bimanProds.length === 0) {
+    await bimanProducto.insertMany(coolecheraProds);
+  }
+  let bimanProdsNew;
+  console.log(JSON.stringify(bimanProds) === JSON.stringify(coolecheraProds));
+  if (JSON.stringify(bimanProds) !== JSON.stringify(coolecheraProds)) {
+    await bimanProducto.deleteMany({});
+    await bimanProducto.insertMany(coolecheraProds);
+    bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  }
+  let updates = [];
+  let news = [];
+  bimanProdsNew.forEach((prod, index) => {
+    if (index <= bimanProds.length - 1) {
+      if (JSON.stringify(prod) !== JSON.stringify(bimanProds[index])) {
+        updates.push(bimanProductoToWooNoId(prod));
+      }
+    } else {
+      news.push(prod);
     }
-  );
-  console.log(products.data.length);
-  const categories = [];
-
-  products.data.forEach((p) => {
-    categories.push(p.nomTipo);
   });
-  console.log(new Set(categories));
-})();
+
+  let wooProductsUpdates = [];
+  for (let i = 0; i < updates.length; i++) {
+    try {
+      console.log("KHASDFBAJHSDAVBN SVDASVHJDAKUSYDA");
+      const newProd = await wooProducto.findOneAndUpdate(
+        { sku: updates[i].sku },
+        updates[i]
+      );
+      wooProductsUpdates.push(newProd);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  const woores = await WooCommerce.post("products/batch", {
+    update: wooProductsUpdates,
+    create: bimanProductoToWooBatch(news).create,
+  });
+
+  await wooProducto.insertMany(woores.data.create);
+});
 
 var app = express();
 app.use(
@@ -74,5 +114,4 @@ app.listen(process.env.PORT, () => {
 app.use("/diaClient", diaClientController);
 app.use("/wooClient", wooClientController);
 app.use("/wooProducto", wooProductoController);
-app.use("/wooOrder", wooOrderController);
 app.use("/dialogFlow", dialogFlowController);

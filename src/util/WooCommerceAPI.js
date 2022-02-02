@@ -9,30 +9,30 @@ const WooCommerce = new WooCommerceRestApi({
   version: "wc/v3", // WooCommerce WP REST API version
 });
 
-function getWooStatus(){
-  let res = {}
+function getWooStatus() {
+  let res = {};
   WooCommerce.get("system_status")
-  .then((response) => {
-    res = response.data
-    console.log("No error")
-  })
-  .catch((error) => {
-    console.log(error.response.data);
-  });
-  return res
+    .then((response) => {
+      res = response.data;
+      console.log("No error");
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+  return res;
 }
 
 async function crearWooProducto(obj) {
   let res1 = {};
   try {
-    console.log("Crear producto 1")
+    console.log("Crear producto 1");
     let datos = await WooCommerce.post("products", obj);
-    console.log("Producto creado?")
+    console.log("Producto creado?");
     res1 = datos.data;
-    console.log(res1)
+    console.log(res1);
   } catch (error) {
     //console.log(error);
-    console.log("EFE creando producto")
+    console.log("EFE creando producto");
   }
   return res1;
 }
@@ -42,7 +42,7 @@ async function actualizarWooProducto(id, obj) {
   try {
     let datos = await WooCommerce.put(`products/${id}`, obj);
     res1 = datos.data;
-    console.log(res1)
+    console.log(res1);
   } catch (error) {
     console.log(error);
   }
@@ -52,45 +52,54 @@ async function actualizarWooProducto(id, obj) {
 async function WooProductoBatch(objs) {
   let res1 = [];
   try {
-    await Promise.all(objs.map(async (element, i) => {
-      res1[i] = await crearWooProducto(element)
-    }))
-    console.log("Did it finish?")
+    await Promise.all(
+      objs.map(async (element, i) => {
+        res1[i] = await crearWooProducto(element);
+      })
+    );
+    console.log("Did it finish?");
   } catch (error) {
-    console.log("Error on batch")
+    console.log("Error on batch");
     //console.log(error);
   }
   return res1;
 }
 
 async function WooProductoBatch2(objs) {
-  let atemp = objs.create
-  let response = []
-  console.log(atemp.length)
-  let variable = 100
+  let atemp = objs.create;
+  let response = [];
+  console.log(atemp.length);
+  let variable = 100;
   try {
-    for (let increment = 0; increment < objs.create.length; increment+=variable) {
-      let temp = { create: atemp.slice(increment, increment+variable), update: [], delete: []}
-      let data = await WooCommerce.post("products/batch", temp)
-      response[increment/variable] = data.data
-      console.log("round: "+increment/variable)
+    for (
+      let increment = 0;
+      increment < objs.create.length;
+      increment += variable
+    ) {
+      let temp = {
+        create: atemp.slice(increment, increment + variable),
+        update: [],
+        delete: [],
+      };
+      let data = await WooCommerce.post("products/batch", temp);
+      response[increment / variable] = data.data;
+      console.log("round: " + increment / variable);
     }
   } catch (error) {
-    console.log("Error on batch")
+    console.log("Error on batch");
     console.log(error);
   }
-  return response
+  return response;
 }
 
-
-function setCategories(data){
+function setCategories(data) {
   WooCommerce.post("products/categories", data)
-  .then((response) => {
-    console.log(response.data);
-  })
-  .catch((error) => {
-    console.log(error.response.data);
-  });
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
 }
 module.exports = {
   crearWooProducto,
@@ -98,5 +107,5 @@ module.exports = {
   WooProductoBatch,
   getWooStatus,
   WooProductoBatch2,
-  setCategories
+  setCategories,
 };

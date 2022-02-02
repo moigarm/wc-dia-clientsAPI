@@ -3,24 +3,30 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
-const { wooProductoMap, bimanProductoToWooBatch, newbimanProductoToWoo } = require("../util/wooProductoMapper");
+const {
+  wooProductoMap,
+  bimanProductoToWooBatch,
+  newbimanProductoToWoo,
+} = require("../util/wooProductoMapper");
 const {
   crearWooProducto,
   actualizarWooProducto,
   getWooStatus,
-  WooProductoBatch2
+  WooProductoBatch2,
 } = require("../util/WooCommerceAPI");
 const { comesFromBiman_Woo } = require("../util/locations");
 const fetch = require("node-fetch");
+const getCoolecheraProducts = require("../util/getCoolecheraProducts");
+const generateSchema = require("generate-schema");
 
 // BIMAN_C para Biman Create, BIMAN_U para Biman Update
 let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT;
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT;
 let bimanProductos = process.env.BIMAN_PRODUCTOS;
 
-router.get("/status", (req, res)=>{
-  res.json({status: 200, message: getWooStatus()})
-})
+router.get("/status", (req, res) => {
+  res.json({ status: 200, message: getWooStatus() });
+});
 router.post("/", (req, res) => {
   console.log(req.body);
   insertRecord(req, res);
@@ -35,7 +41,7 @@ router.get("/batchme", (req, res) => {
 });
 
 async function insertRecord(req, res) {
-  console.log(req.body)
+  console.log(req.body);
   let noNew = false;
   try {
     let producto = newbimanProductoToWoo(req.body);
@@ -45,7 +51,7 @@ async function insertRecord(req, res) {
     });
     if (!noNew) {
       if (comesFromBiman_Woo(req.header("x-wc-webhook-source")) == "biman") {
-        let response = fetch(bimanCreateProduct, {
+        let response = fetch(`${bimanCreateProduct}`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -58,7 +64,7 @@ async function insertRecord(req, res) {
         console.log(data);
         responseFromService = producto;
       } else {
-        console.log("Crear producto ps")
+        console.log("Crear producto ps");
         responseFromService = await crearWooProducto(producto);
       }
       let producto2 = newbimanProductoToWoo(responseFromService);
@@ -143,22 +149,14 @@ async function updateRecord(req, res) {
 async function CrearProductoBatch(req, res) {
   let responseFromService = {};
   try {
-    let response = await fetch(bimanProductos, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-    });
-    let data = await response.json();
-    let productos = bimanProductoToWooBatch(data)
+    const products = await getCoolecheraProducts();
+    let productos = bimanProductoToWooBatch(products);
     responseFromService = await WooProductoBatch2(productos);
-    let finalResult = []
+    let finalResult = [];
     responseFromService.forEach((element, i) => {
-      wooProducto.insertMany(element, (err, docs) => {
+      wooProducto.insertMany(element.create, (err, docs) => {
         if (!err) {
-          finalResult[i] = docs
+          finalResult[i] = docs;
         } else {
           console.log(err);
           res.json({
@@ -168,9 +166,9 @@ async function CrearProductoBatch(req, res) {
         }
       });
     });
-    res.json({status:200, message: finalResult})
+    res.json({ status: 200, message: finalResult });
   } catch (error) {
-    console.log("Error desconocido")
+    console.log("Error desconocido");
     console.log(error);
   }
 }

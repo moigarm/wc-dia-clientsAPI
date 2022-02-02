@@ -80,51 +80,51 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto._links.collection = wooProductoFromWebhook._links?.collection;
   return newWooProducto;
 }
-function newbimanProductoToWoo(objeto){
+function newbimanProductoToWoo(objeto) {
   // console.log(objeto)
-  let newObj = new wooProducto()
-  newObj.internal_id = objeto.ID,
-  // newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
-  // newObj.categories[0] = {name: objeto.nomTipo},
-  // newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
-  // newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
-  // newObj.existencia = objeto.existencia, // agregar a WooCommerce
-  newObj.stock_quantity = objeto.Cantidad,
-  newObj.sku = objeto.CodigoSap, 
-  newObj.name = objeto.NombreComercial,
-  newObj.regular_price = objeto.VentaUnitaria,
-  //newObj.tasaiva = objeto.tasaIva,
-  // newObj.attributes=[{
-  //   id:2,
-  //   name:"nombre_almacen",
-  //   option:"PERRO"
-  // }]
-  //newObj.nomgenerico = objeto.nomGenerico
-  // newObj.meta_data = [
-  //   {
-  //     key: "nombre_generico", 
-  //     value: "test"
-  //   }
-  // ] // agregar a WooCommerce
-  console.log(newObj)
-  return newObj
+  let newObj = new wooProducto();
+  (newObj.internal_id = objeto.ID),
+    // newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
+    // newObj.categories[0] = {name: objeto.nomTipo},
+    // newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
+    // newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
+    // newObj.existencia = objeto.existencia, // agregar a WooCommerce
+    (newObj.stock_quantity = objeto.Cantidad),
+    (newObj.sku = objeto.CodigoSap),
+    (newObj.name = objeto.NombreComercial),
+    (newObj.regular_price = objeto.VentaUnitaria),
+    //newObj.tasaiva = objeto.tasaIva,
+    // newObj.attributes=[{
+    //   id:2,
+    //   name:"nombre_almacen",
+    //   option:"PERRO"
+    // }]
+    //newObj.nomgenerico = objeto.nomGenerico
+    // newObj.meta_data = [
+    //   {
+    //     key: "nombre_generico",
+    //     value: "test"
+    //   }
+    // ] // agregar a WooCommerce
+    console.log(newObj);
+  return newObj;
 }
 
-function bimanProductoToWoo(objeto){
-  let newObj = new wooProducto()
-  newObj.internal_id = objeto.ID,
-  newObj.nombre_almacen = objeto.nombreAlmacen, // agregar a WooCommerce
-  newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}],
-  newObj.idservicio = objeto.Idservicio, // agregar a WooCommerce
-  newObj.tasa_descuento = objeto.tasaDescuento, // agregar a WooCommerce
-  newObj.stock_quantity = objeto.Cantidad,
-  newObj.sku = objeto.CodigoSap, 
-  newObj.name = objeto.NombreComercial,
-  newObj.existencia = objeto.existencia, // agregar a WooCommerce
-  newObj.regular_price = objeto.VentaUnitaria,
-  newObj.tasaiva = objeto.tasaIva,
-  newObj.nomgenerico = objeto.nomGenerico // agregar a WooCommerce
-  return newObj
+function bimanProductoToWoo(objeto) {
+  let newObj = new wooProducto();
+  (newObj.internal_id = objeto.ID),
+    (newObj.nombre_almacen = objeto.nombreAlmacen), // agregar a WooCommerce
+    /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
+    (newObj.idservicio = objeto.Idservicio), // agregar a WooCommerce
+    (newObj.tasa_descuento = objeto.tasaDescuento), // agregar a WooCommerce
+    (newObj.stock_quantity = objeto.Cantidad),
+    (newObj.sku = objeto.CodigoSap),
+    (newObj.name = objeto.NombreComercial),
+    (newObj.existencia = objeto.existencia), // agregar a WooCommerce
+    (newObj.regular_price = objeto.VentaUnitaria),
+    (newObj.tasaiva = objeto.tasaIva),
+    (newObj.nomgenerico = objeto.nomGenerico); // agregar a WooCommerce
+  return newObj;
 
   // ID,
   // CodigoSap,
@@ -140,19 +140,49 @@ function bimanProductoToWoo(objeto){
   // Cantidad//
 }
 
-function bimanProductoToWooBatch(objetos){
-  let productosArray = []
-  objetos.forEach((key, i)=>{
-    productosArray[i] = bimanProductoToWoo(key)
-  })
-  console.log(productosArray[0])
-  return {create: productosArray}
+function bimanProductoToWooNoId(objeto) {
+  return {
+    internal_id: objeto.ID,
+    nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
+    /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
+    idservicio: objeto.Idservicio, // agregar a WooCommerce
+    tasa_descuento: objeto.tasaDescuento, // agregar a WooCommerce
+    stock_quantity: objeto.existencia,
+    sku: objeto.CodigoSap,
+    name: objeto.NombreComercial,
+    existencia: objeto.existencia, // agregar a WooCommerce
+    regular_price: `${objeto.VentaUnitaria}`,
+    tasaiva: objeto.tasaIva,
+    nomgenerico: objeto.nomGener,
+  };
+
+  // ID,
+  // CodigoSap,
+  // NombreComercial,
+  // nomGenerico,
+  // VentaUnitaria,
+  // tasaIva,
+  // existencia,
+  // nombreAlmacen, //
+  // nomTipo,//
+  // Idservicio,//
+  // tasaDescuento,//
+  // Cantidad//
+}
+
+function bimanProductoToWooBatch(objetos) {
+  let productosArray = [];
+  objetos.forEach((key, i) => {
+    productosArray[i] = bimanProductoToWoo(key);
+  });
+  console.log(productosArray[0]);
+  return { create: productosArray };
 }
 
 module.exports = {
   wooProductoMap,
   bimanProductoToWoo,
   bimanProductoToWooBatch,
-  newbimanProductoToWoo
+  newbimanProductoToWoo,
+  bimanProductoToWooNoId,
 };
-
