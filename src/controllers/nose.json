@@ -1,0 +1,2984 @@
+{
+  "data": [
+    {
+      "type": "Lead",
+      "id": "10778e7d-647b-741d-5b63-61f83e4b274d",
+      "attributes": {
+        "name": "Rodger Ardoin",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sally_id",
+        "assigned_user_name": "Sally Bronsen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Rodger",
+        "last_name": "Ardoin",
+        "full_name": "Rodger Ardoin",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(622) 637-1853",
+        "email": "",
+        "phone_mobile": "(174) 223-2358",
+        "phone_work": "(691) 068-4734",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "the.beans@example.tw",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "345 Sugar Blvd.",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Denver",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "33335",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Campaign",
+        "lead_source_description": "",
+        "status": "New",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "SuperG Tech",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/10778e7d-647b-741d-5b63-61f83e4b274d/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "11bb9e66-c0c9-3d07-707a-61f83e4fb05d",
+      "attributes": {
+        "name": "Rocky Carlino",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_will_id",
+        "assigned_user_name": "Will Westin",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Rocky",
+        "last_name": "Carlino",
+        "full_name": "Rocky Carlino",
+        "title": "Director Sales",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(298) 647-4737",
+        "email": "",
+        "phone_mobile": "(228) 773-4028",
+        "phone_work": "(389) 155-6188",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "qa.section.dev@example.cn",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "123 Anywhere Street",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Salt Lake City",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "76986",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Direct Mail",
+        "lead_source_description": "",
+        "status": "Converted",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "P Piper & Sons",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/11bb9e66-c0c9-3d07-707a-61f83e4fb05d/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "12ae2390-b125-addd-fddb-61f83ef675d1",
+      "attributes": {
+        "name": "Holly Mole",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sarah_id",
+        "assigned_user_name": "Sarah Smith",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Holly",
+        "last_name": "Mole",
+        "full_name": "Holly Mole",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(362) 826-0899",
+        "email": "",
+        "phone_mobile": "(859) 343-6629",
+        "phone_work": "(314) 276-1226",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "hr.section.support@example.net",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "48920 San Carlos Ave",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Cupertino",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "96893",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Campaign",
+        "lead_source_description": "",
+        "status": "Recycled",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Avery Software Co",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/12ae2390-b125-addd-fddb-61f83ef675d1/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "131f38d1-336f-35fa-8a16-61f83e33036a",
+      "attributes": {
+        "name": "Bernardo Duquette",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_max_id",
+        "assigned_user_name": "Max Jensen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Bernardo",
+        "last_name": "Duquette",
+        "full_name": "Bernardo Duquette",
+        "title": "President",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(611) 047-3682",
+        "email": "",
+        "phone_mobile": "(368) 024-4413",
+        "phone_work": "(319) 226-5750",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "vegan.vegan@example.org",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "1715 Scott Dr",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Alabama",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "74388",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Employee",
+        "lead_source_description": "",
+        "status": "Assigned",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Gifted Holdings AG",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/131f38d1-336f-35fa-8a16-61f83e33036a/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1487f22d-b40f-5e84-b9c6-61f83ea8e7ce",
+      "attributes": {
+        "name": "Wm Doctor",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_will_id",
+        "assigned_user_name": "Will Westin",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Wm",
+        "last_name": "Doctor",
+        "full_name": "Wm Doctor",
+        "title": "Director Sales",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(614) 578-3382",
+        "email": "",
+        "phone_mobile": "(860) 500-1255",
+        "phone_work": "(515) 271-2099",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "kid.kid.im@example.tv",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "321 University Ave.",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Santa Fe",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "80507",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Partner",
+        "lead_source_description": "",
+        "status": "Converted",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "AB Drivers Limited",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1487f22d-b40f-5e84-b9c6-61f83ea8e7ce/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "15e925f9-8aec-2009-6523-61f83eb489a8",
+      "attributes": {
+        "name": "Gordon Ozuna",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sarah_id",
+        "assigned_user_name": "Sarah Smith",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Gordon",
+        "last_name": "Ozuna",
+        "full_name": "Gordon Ozuna",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(654) 701-0600",
+        "email": "",
+        "phone_mobile": "(387) 645-6836",
+        "phone_work": "(127) 947-3019",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "kid.info.section@example.org",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "123 Anywhere Street",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Cupertino",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "91333",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Trade Show",
+        "lead_source_description": "",
+        "status": "In Process",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Lexington Shores Corp",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/15e925f9-8aec-2009-6523-61f83eb489a8/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1712fe9d-9ad1-f669-8ffd-61f83e22dd58",
+      "attributes": {
+        "name": "Dorothea Crandell",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_will_id",
+        "assigned_user_name": "Will Westin",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Dorothea",
+        "last_name": "Crandell",
+        "full_name": "Dorothea Crandell",
+        "title": "Senior Product Manager",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(208) 461-4814",
+        "email": "",
+        "phone_mobile": "(771) 684-3851",
+        "phone_work": "(645) 732-3597",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "beans.sugar.sales@example.cn",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "67321 West Siam St.",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "St. Petersburg",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "50951",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Employee",
+        "lead_source_description": "",
+        "status": "Dead",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "360 Vacations",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1712fe9d-9ad1-f669-8ffd-61f83e22dd58/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "18f4c8c7-8a37-2000-b783-61f83e798334",
+      "attributes": {
+        "name": "Jody Futrell",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_max_id",
+        "assigned_user_name": "Max Jensen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Jody",
+        "last_name": "Futrell",
+        "full_name": "Jody Futrell",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(967) 193-2092",
+        "email": "",
+        "phone_mobile": "(410) 551-5619",
+        "phone_work": "(128) 877-7702",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "kid54@example.info",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "111 Silicon Valley Road",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "St. Petersburg",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "20299",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Existing Customer",
+        "lead_source_description": "",
+        "status": "Recycled",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "King Software Inc",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/18f4c8c7-8a37-2000-b783-61f83e798334/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1b03e7e4-b2b6-5696-9b3c-61f83ede8f53",
+      "attributes": {
+        "name": "Clinton Tomita",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_max_id",
+        "assigned_user_name": "Max Jensen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Clinton",
+        "last_name": "Tomita",
+        "full_name": "Clinton Tomita",
+        "title": "President",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(372) 930-4228",
+        "email": "",
+        "phone_mobile": "(490) 164-2873",
+        "phone_work": "(484) 506-2209",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "kid.vegan@example.edu",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "777 West Filmore Ln",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "San Francisco",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "46792",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Word of mouth",
+        "lead_source_description": "",
+        "status": "Assigned",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "B.H. Edwards Inc",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1b03e7e4-b2b6-5696-9b3c-61f83ede8f53/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1b2f352b-a8ce-3b7e-1e86-61fa964f080f",
+      "attributes": {
+        "name": " ",
+        "date_entered": "2022-02-02T14:33:00+01:00",
+        "date_modified": "2022-02-02T14:33:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "",
+        "assigned_user_name": "",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "",
+        "last_name": "",
+        "full_name": " ",
+        "title": "",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "",
+        "email": "",
+        "phone_mobile": "",
+        "phone_work": "",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "",
+        "email2": "",
+        "invalid_email": "",
+        "email_opt_out": "",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "",
+        "primary_address_state": "",
+        "primary_address_postalcode": "",
+        "primary_address_country": "",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "",
+        "lead_source_description": "",
+        "status": "New",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "0.00000000",
+        "jjwg_maps_lng_c": "0.00000000"
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1b2f352b-a8ce-3b7e-1e86-61fa964f080f/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1c166fcf-0772-b4b4-fe1f-61f83e9251e6",
+      "attributes": {
+        "name": "Sheena Azevedo",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sally_id",
+        "assigned_user_name": "Sally Bronsen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Sheena",
+        "last_name": "Azevedo",
+        "full_name": "Sheena Azevedo",
+        "title": "Senior Product Manager",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(611) 409-5006",
+        "email": "",
+        "phone_mobile": "(006) 948-2187",
+        "phone_work": "(556) 885-0858",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "section55@example.name",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "111 Silicon Valley Road",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Ohio",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "40538",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Campaign",
+        "lead_source_description": "",
+        "status": "Dead",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "JBC Banking Inc",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1c166fcf-0772-b4b4-fe1f-61f83e9251e6/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1c5b0952-05c4-21bc-2f33-61f83e5b7b11",
+      "attributes": {
+        "name": "Jessie Lockard",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sally_id",
+        "assigned_user_name": "Sally Bronsen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Jessie",
+        "last_name": "Lockard",
+        "full_name": "Jessie Lockard",
+        "title": "Senior Product Manager",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(731) 471-3246",
+        "email": "",
+        "phone_mobile": "(756) 450-0029",
+        "phone_work": "(159) 704-7189",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "hr.im.kid@example.co.uk",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "48920 San Carlos Ave",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Salt Lake City",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "23874",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Email",
+        "lead_source_description": "",
+        "status": "In Process",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Constrata Trust LLC",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1c5b0952-05c4-21bc-2f33-61f83e5b7b11/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3",
+      "attributes": {
+        "name": "Shawna Charlebois",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_max_id",
+        "assigned_user_name": "Max Jensen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Shawna",
+        "last_name": "Charlebois",
+        "full_name": "Shawna Charlebois",
+        "title": "IT Developer",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(195) 831-8484",
+        "email": "",
+        "phone_mobile": "(429) 503-6290",
+        "phone_work": "(830) 963-2150",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "hr33@example.edu",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "321 University Ave.",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Ohio",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "31564",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Other",
+        "lead_source_description": "",
+        "status": "Dead",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Super Star Holdings Inc",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1edaa9e8-21eb-b0f6-dcaf-61f83ef6c2d3/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "1f7b417f-2912-4469-afa0-61f83ec0e802",
+      "attributes": {
+        "name": "Melanie Halliburton",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_will_id",
+        "assigned_user_name": "Will Westin",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Melanie",
+        "last_name": "Halliburton",
+        "full_name": "Melanie Halliburton",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(871) 428-1067",
+        "email": "",
+        "phone_mobile": "(702) 688-9650",
+        "phone_work": "(742) 774-5340",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "qa.sales.beans@example.tv",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "111 Silicon Valley Road",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Persistance",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "76304",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Word of mouth",
+        "lead_source_description": "",
+        "status": "Recycled",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Anytime Air Support Inc",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/1f7b417f-2912-4469-afa0-61f83ec0e802/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "219c077f-b6fb-b55e-ebb3-61f83e9b0c22",
+      "attributes": {
+        "name": "Wilma Snider",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sarah_id",
+        "assigned_user_name": "Sarah Smith",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Wilma",
+        "last_name": "Snider",
+        "full_name": "Wilma Snider",
+        "title": "Director Sales",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(756) 849-0600",
+        "email": "",
+        "phone_mobile": "(445) 255-8912",
+        "phone_work": "(363) 488-0761",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "qa.qa@example.net",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "345 Sugar Blvd.",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Los Angeles",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "33857",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Public Relations",
+        "lead_source_description": "",
+        "status": "Converted",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Hollywood Diner Ltd",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/219c077f-b6fb-b55e-ebb3-61f83e9b0c22/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "233c4bcf-b4f8-f649-8a58-61f83e39f265",
+      "attributes": {
+        "name": "Mildred Trice",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_will_id",
+        "assigned_user_name": "Will Westin",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Mildred",
+        "last_name": "Trice",
+        "full_name": "Mildred Trice",
+        "title": "VP Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(755) 736-0735",
+        "email": "",
+        "phone_mobile": "(917) 521-3528",
+        "phone_work": "(871) 810-2186",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "support.support@example.co.uk",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "123 Anywhere Street",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Sunnyvale",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "94672",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Public Relations",
+        "lead_source_description": "",
+        "status": "Converted",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Spindle Broadcast Corp.",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/233c4bcf-b4f8-f649-8a58-61f83e39f265/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "2763995c-2420-72a1-622c-61f83ec0606f",
+      "attributes": {
+        "name": "Marion Mroz",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_max_id",
+        "assigned_user_name": "Max Jensen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Marion",
+        "last_name": "Mroz",
+        "full_name": "Marion Mroz",
+        "title": "Mgr Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(568) 000-4099",
+        "email": "",
+        "phone_mobile": "(148) 759-9685",
+        "phone_work": "(374) 523-0922",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "hr.beans@example.org",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "777 West Filmore Ln",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Alabama",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "99460",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "",
+        "lead_source_description": "",
+        "status": "New",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Davenport Investing",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/2763995c-2420-72a1-622c-61f83ec0606f/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "27e6b124-3c83-78f4-f21d-61f83eb997d9",
+      "attributes": {
+        "name": "Leonel Forsberg",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_chris_id",
+        "assigned_user_name": "Chris Olliver",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Leonel",
+        "last_name": "Forsberg",
+        "full_name": "Leonel Forsberg",
+        "title": "Senior Product Manager",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(793) 163-1557",
+        "email": "",
+        "phone_mobile": "(753) 709-6105",
+        "phone_work": "(303) 167-1390",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "sugar.the@example.org",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "777 West Filmore Ln",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Cupertino",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "92932",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Trade Show",
+        "lead_source_description": "",
+        "status": "Assigned",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Q.R.&E. Corp",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/27e6b124-3c83-78f4-f21d-61f83eb997d9/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "2888b53c-c16b-2c23-6bfb-61f83e67689a",
+      "attributes": {
+        "name": "Alisa Francis",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sally_id",
+        "assigned_user_name": "Sally Bronsen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Alisa",
+        "last_name": "Francis",
+        "full_name": "Alisa Francis",
+        "title": "Director Operations",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(160) 549-7658",
+        "email": "",
+        "phone_mobile": "(074) 631-3196",
+        "phone_work": "(116) 749-7558",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "im41@example.net",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "999 Baker Way",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "San Francisco",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "98137",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Email",
+        "lead_source_description": "",
+        "status": "Converted",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "360 Vacations",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/2888b53c-c16b-2c23-6bfb-61f83e67689a/relationships/created_by_link"
+          }
+        }
+      }
+    },
+    {
+      "type": "Lead",
+      "id": "294d711d-8772-e4e6-843a-61f83ea005df",
+      "attributes": {
+        "name": "Nellie Landaverde",
+        "date_entered": "2022-01-31T19:51:00+01:00",
+        "date_modified": "2022-01-31T19:51:00+01:00",
+        "modified_user_id": "1",
+        "modified_by_name": "Administrator",
+        "created_by": "1",
+        "created_by_name": "Administrator",
+        "description": "",
+        "deleted": "0",
+        "created_by_link": "",
+        "modified_user_link": "",
+        "assigned_user_id": "seed_sally_id",
+        "assigned_user_name": "Sally Bronsen",
+        "assigned_user_link": "",
+        "SecurityGroups": "",
+        "salutation": "",
+        "first_name": "Nellie",
+        "last_name": "Landaverde",
+        "full_name": "Nellie Landaverde",
+        "title": "Senior Product Manager",
+        "photo": "",
+        "department": "",
+        "do_not_call": "0",
+        "phone_home": "(722) 011-9210",
+        "email": "",
+        "phone_mobile": "(365) 509-6929",
+        "phone_work": "(241) 454-9223",
+        "phone_other": "",
+        "phone_fax": "",
+        "email1": "hr79@example.net",
+        "email2": "",
+        "invalid_email": "0",
+        "email_opt_out": "0",
+        "lawful_basis": "",
+        "date_reviewed": "",
+        "lawful_basis_source": "",
+        "primary_address_street": "111 Silicon Valley Road",
+        "primary_address_street_2": "",
+        "primary_address_street_3": "",
+        "primary_address_city": "Sunnyvale",
+        "primary_address_state": "CA",
+        "primary_address_postalcode": "87752",
+        "primary_address_country": "USA",
+        "alt_address_street": "",
+        "alt_address_street_2": "",
+        "alt_address_street_3": "",
+        "alt_address_city": "",
+        "alt_address_state": "",
+        "alt_address_postalcode": "",
+        "alt_address_country": "",
+        "assistant": "",
+        "assistant_phone": "",
+        "email_addresses_primary": "",
+        "email_addresses": "",
+        "email_addresses_non_primary": "",
+        "converted": "0",
+        "refered_by": "",
+        "lead_source": "Cold Call",
+        "lead_source_description": "",
+        "status": "Recycled",
+        "status_description": "",
+        "reports_to_id": "",
+        "report_to_name": "",
+        "reports_to_link": "",
+        "reportees": "",
+        "contacts": "",
+        "account_name": "Kaos Trading Ltd",
+        "accounts": "",
+        "account_description": "",
+        "contact_id": "",
+        "contact": "",
+        "account_id": "",
+        "opportunity_id": "",
+        "opportunity": "",
+        "opportunity_name": "",
+        "opportunity_amount": "",
+        "campaign_id": "",
+        "campaign_name": "",
+        "campaign_leads": {},
+        "c_accept_status_fields": "",
+        "m_accept_status_fields": "",
+        "accept_status_id": "",
+        "accept_status_name": "",
+        "webtolead_email1": "",
+        "webtolead_email2": "",
+        "webtolead_email_opt_out": "",
+        "webtolead_invalid_email": "",
+        "birthdate": "",
+        "portal_name": "",
+        "portal_app": "",
+        "website": "",
+        "tasks": "",
+        "notes": "",
+        "meetings": "",
+        "calls": "",
+        "oldmeetings": "",
+        "oldcalls": "",
+        "emails": "",
+        "campaigns": "",
+        "prospect_lists": "",
+        "fp_events_leads_1": "",
+        "e_invite_status_fields": "",
+        "event_status_name": "",
+        "event_invite_id": "",
+        "e_accept_status_fields": "",
+        "event_accept_status": "",
+        "event_status_id": "",
+        "jjwg_maps_address_c": "",
+        "jjwg_maps_geocode_status_c": "",
+        "jjwg_maps_lat_c": "",
+        "jjwg_maps_lng_c": ""
+      },
+      "relationships": {
+        "CampaignLog": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/campaigns"
+          }
+        },
+        "Contacts": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/contacts"
+          }
+        },
+        "EmailAddress": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/email_addresses"
+          }
+        },
+        "ProspectLists": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/prospect_lists"
+          }
+        },
+        "SecurityGroups": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/SecurityGroups"
+          }
+        },
+        "Users": {
+          "links": {
+            "related": "V8/module/Leads/294d711d-8772-e4e6-843a-61f83ea005df/relationships/created_by_link"
+          }
+        }
+      }
+    }
+  ]
+}

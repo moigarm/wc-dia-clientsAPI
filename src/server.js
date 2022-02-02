@@ -34,6 +34,12 @@ let allowedOrigins = [""];
     }
   );
   console.log(products.data.length);
+  const categories = [];
+
+  products.data.forEach((p) => {
+    categories.push(p.nomTipo);
+  });
+  console.log(new Set(categories));
 })();
 
 var app = express();

@@ -2,8 +2,10 @@ const express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
 const diaClient = mongoose.model("diaClient");
-const { diaClientMap } = require("../util/diaClientMapper");
+const diaClientMap = require("../util/diaClientMapper");
 const { getParameters } = require("../util/dialogClient");
+const GetAccessToken = require("../util/accessToken");
+const { default: axios } = require("axios");
 let bimanCreateClient = process.env.BIMAN_BASE + process.env.BIMAN_C_CLIENT;
 let bimanUpdateClient = process.env.BIMAN_BASE + process.env.BIMAN_U_CLIENT;
 
@@ -16,28 +18,34 @@ router.put("/update", (req, res) => {
 });
 
 function insertRecord(req, res) {
-  let params = getParameters(req.body);
+  const { Nombre, Apellido, Telefono, Correo } =
+    req.body.queryResult.parameters;
   try {
-    let client = diaClientMap(params);
-    client.save((err, doc) => {
-      console.log(doc);
+    let client = new diaClient({
+      firstName: Nombre,
+      lastName: Apellido,
+      displayName: `${Nombre} ${Apellido}`,
+      phoneNumber: Telefono,
+      email: Correo,
+    });
+    client.save(async (err, doc) => {
       if (!err) {
-        fetch(bimanCreateClient, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
+        const token = await GetAccessToken();
+        await axios.post(
+          `${process.env.SUITE_CRM}/V8/module`,
+          {
+            data: {
+              type: "Leads",
+              attributes: {
+                first_name: Nombre,
+                last_name: Apellido,
+                email1: Correo,
+                phone_mobile: Telefono,
+              },
+            },
           },
-          mode: "cors",
-          body: JSON.stringify(doc),
-        })
-          .then((response) => {
-            let data = response.data;
-            console.log(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
         res.json({ status: 200, message: doc });
       } else
         res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
