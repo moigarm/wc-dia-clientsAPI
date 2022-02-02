@@ -20,6 +20,7 @@ function insertRecord(req, res) {
   try {
     let client = diaClientMap(params);
     client.save((err, doc) => {
+      console.log(doc);
       if (!err) {
         fetch(bimanCreateClient, {
           method: "POST",
