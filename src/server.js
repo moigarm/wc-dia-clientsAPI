@@ -13,6 +13,8 @@ const wooProductoController = require("./controllers/wooProductoController");
 //Endpoint for testing purposes
 const dialogFlowController = require("./controllers/dialogFlowController");
 
+const { batchInicial } = require("./util/batchInicial")
+
 const getCoolecheraProducts = require("./util/getCoolecheraProducts");
 var cron = require("node-cron");
 const mongoose = require("mongoose");
@@ -24,6 +26,7 @@ const {
   bimanProductoToWooNoId,
   bimanProductoToWooBatch,
 } = require("./util/wooProductoMapper");
+const { Console } = require("console");
 
 const WooCommerce = new WooCommerceRestApi({
   url: process.env.WOOCOMMERCE_BASE_URL, // Your store URL
@@ -34,54 +37,63 @@ const WooCommerce = new WooCommerceRestApi({
 
 let allowedOrigins = [""];
 
-cron.schedule("*/10 * * * * *", async () => {
-  console.log("hola");
-
-  const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
-  let coolecheraProds = await getCoolecheraProducts();
-
-  if (bimanProds.length === 0) {
-    await bimanProducto.insertMany(coolecheraProds);
+wooProducto.find({}, (err, docs)=>{
+  if(!err && docs.length === 0){
+    console.log("MongoDB está vacío")
+    batchInicial()
+  }else{
+    console.log("MongoDB tiene registros de productos")
   }
-  let bimanProdsNew;
-  console.log(JSON.stringify(bimanProds) === JSON.stringify(coolecheraProds));
-  if (JSON.stringify(bimanProds) !== JSON.stringify(coolecheraProds)) {
-    await bimanProducto.deleteMany({});
-    await bimanProducto.insertMany(coolecheraProds);
-    bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
-  }
-  let updates = [];
-  let news = [];
-  bimanProdsNew.forEach((prod, index) => {
-    if (index <= bimanProds.length - 1) {
-      if (JSON.stringify(prod) !== JSON.stringify(bimanProds[index])) {
-        updates.push(bimanProductoToWooNoId(prod));
-      }
-    } else {
-      news.push(prod);
-    }
-  });
+})
 
-  let wooProductsUpdates = [];
-  for (let i = 0; i < updates.length; i++) {
-    try {
-      console.log("KHASDFBAJHSDAVBN SVDASVHJDAKUSYDA");
-      const newProd = await wooProducto.findOneAndUpdate(
-        { sku: updates[i].sku },
-        updates[i]
-      );
-      wooProductsUpdates.push(newProd);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  const woores = await WooCommerce.post("products/batch", {
-    update: wooProductsUpdates,
-    create: bimanProductoToWooBatch(news).create,
-  });
+// cron.schedule("*/10 * * * * *", async () => {
+//   console.log("hola");
 
-  await wooProducto.insertMany(woores.data.create);
-});
+//   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
+//   let coolecheraProds = await getCoolecheraProducts();
+
+//   if (bimanProds.length === 0) {
+//     await bimanProducto.insertMany(coolecheraProds);
+//   }
+//   let bimanProdsNew;
+//   console.log(JSON.stringify(bimanProds) === JSON.stringify(coolecheraProds));
+//   if (JSON.stringify(bimanProds) !== JSON.stringify(coolecheraProds)) {
+//     await bimanProducto.deleteMany({});
+//     await bimanProducto.insertMany(coolecheraProds);
+//     bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
+//   }
+//   let updates = [];
+//   let news = [];
+//   bimanProdsNew.forEach((prod, index) => {
+//     if (index <= bimanProds.length - 1) {
+//       if (JSON.stringify(prod) !== JSON.stringify(bimanProds[index])) {
+//         updates.push(bimanProductoToWooNoId(prod));
+//       }
+//     } else {
+//       news.push(prod);
+//     }
+//   });
+
+//   let wooProductsUpdates = [];
+//   for (let i = 0; i < updates.length; i++) {
+//     try {
+//       console.log("KHASDFBAJHSDAVBN SVDASVHJDAKUSYDA");
+//       const newProd = await wooProducto.findOneAndUpdate(
+//         { sku: updates[i].sku },
+//         updates[i]
+//       );
+//       wooProductsUpdates.push(newProd);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
+//   const woores = await WooCommerce.post("products/batch", {
+//     update: wooProductsUpdates,
+//     create: bimanProductoToWooBatch(news).create,
+//   });
+
+//   await wooProducto.insertMany(woores.data.create);
+// });
 
 var app = express();
 app.use(

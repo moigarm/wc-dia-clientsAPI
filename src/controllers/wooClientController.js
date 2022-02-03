@@ -3,6 +3,8 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const wooClient = mongoose.model("wooClient");
 const { wooClientMap } = require("../util/wooClientMapper");
+const { default: axios } = require("axios");
+const GetAccessToken = require("../util/accessToken");
 
 router.post("/", (req, res) => {
   insertRecord(req, res);
@@ -13,15 +15,32 @@ router.put("/update", (req, res) => {
 });
 
 function insertRecord(req, res) {
+  console.log(req.body)
+  console.log(typeof req.body.webhook_id)
+  if(typeof req.body.webhook_id === "string")return 0
   try {
-    
-    let client = wooClientMap(req.body);
-    client.save((err, doc) => {
-    if (!err) res.json({ status: 200, message: `Inserción satisfactoria` });
-    else res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
-    });
+    console.log("Comienza push de cliente a suiteCRM")
+    let newwooClient = wooClientMap(req.body.billing)
+    console.log(newwooClient)
+    newwooClient.save(async (err, doc) => {
+    if (!err) {
+      const token = await GetAccessToken();
+      await axios.post(
+        `${process.env.SUITE_CRM}/V8/module`,
+        {
+          data: {
+            type: "Contacts",
+            attributes: wooClient,
+          },
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      res.json({ status: 200, message: doc });
+    } else
+      res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
+  });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 
