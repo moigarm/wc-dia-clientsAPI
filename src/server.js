@@ -14,7 +14,7 @@ const wooProductoController = require("./controllers/wooProductoController");
 const dialogFlowController = require("./controllers/dialogFlowController");
 
 const { batchInicial } = require("./util/batchInicial");
-const { WooProductoBatch2 } = require("./util/WooCommerceAPI")
+const { WooProductoBatch2, actualizarWooProducto } = require("./util/WooCommerceAPI")
 
 const getCoolecheraProducts = require("./util/getCoolecheraProducts");
 var cron = require("node-cron");
@@ -26,6 +26,7 @@ const {
   bimanProductoToWoo,
   bimanProductoToWooNoId,
   bimanProductoToWooBatch,
+  wooProductoMap,
 } = require("./util/wooProductoMapper");
 
 const WooCommerce = new WooCommerceRestApi({
@@ -51,7 +52,9 @@ cron.schedule("*/10 * * * * *", async () => {
 
   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
   let coolecheraProds = await getCoolecheraProducts();
-  coolecheraProds[0].VentaUnitaria = 333333
+  coolecheraProds[0].VentaUnitaria = 12
+  console.log("Cambio de valor unitario")
+  console.log(coolecheraProds[0].ID)
   if (bimanProds.length === 0) {
     await bimanProducto.insertMany(coolecheraProds);
   }
@@ -89,20 +92,23 @@ cron.schedule("*/10 * * * * *", async () => {
   let wooProductsUpdates = [];
   console.log("Updates length")
   console.log(updates.length)
+  console.log(updates[0])
   for (let i = 0; i < updates.length; i++) {
-    console.log(updates[i])
+    //console.log(updates[i])
     try {
+      console.log(updates[i].sku)
       const newProd = await wooProducto.find(
-        { internal_id: updates[i].sku }
+        { sku: updates[i].sku },
+        { _id: 0, __v: 0 }
       );
-      console.log("New prod")
-      console.log(newProd)
-      wooProductsUpdates.push(newProd);
+      let newObj = updates[i]
+      newObj.id = newProd[0].id
+      wooProductsUpdates.push(newObj);
     } catch (e) {
       console.log(e);
     }
   }
-  console.log("PROBLEMAAAA")
+  // return 0
   console.log("paso 3")
   if(wooProductsUpdates.length !== 0 || news.length !== 0){
     try{
@@ -112,16 +118,35 @@ cron.schedule("*/10 * * * * *", async () => {
       //   create: bimanProductoToWooBatch(news).create,
       // });
       let completeObject = {create: [], update: []}
-      console.log(news)
+      //console.log(news[0])
       if(news.length !== 0)
       completeObject.create = bimanProductoToWooBatch(news).create
       if(wooProductsUpdates.length !== 0)
       completeObject.update = wooProductsUpdates
 
-      const woores = await WooProductoBatch2(completeObject, 50)
+      const createsWoo = await WooProductoBatch2(completeObject, 50)
+      wooProductsUpdates.forEach(async (element)=>{
+        let res = await actualizarWooProducto(element.id, element)
+        console.log("Objeto actualizado")
+        console.log(res)
+      })
+      return 0
+      updatesWoo?.data.update.forEach(ele =>{
+        let res = actualizarWooProducto(ele.id, ele)
+        console.log("Bucle")
+        console.log(res)
+      })
+      console.log("Woores")
+      console.log(woores)
+      woores.forEach((ele) =>{
+        wooProducto.insertMany(ele.create, (err, doc)=>{
+          console.log(err)
+        });
+      })
+      wooProductsUpdates.forEach(element=>{
+        wooProducto.findOneAndUpdate({id: element.id}, element)
+      })
       
-      let insertRespose = await wooProducto.insertMany(woores.create);
-      console.log(insertRespose)
     }catch(e){console.log(e)}
   }
   console.log("finalizado?")

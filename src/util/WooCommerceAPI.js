@@ -41,6 +41,7 @@ async function crearWooProducto(obj) {
 
 async function actualizarWooProducto(id, obj) {
   let res1 = {};
+  delete obj["sku"]
   try {
     let datos = await WooCommerce.put(`products/${id}`, obj);
     res1 = datos.data;
@@ -69,8 +70,7 @@ async function WooProductoBatch(objs) {
 
 async function WooProductoBatch2(objs, variableSize) {
   console.log(objs)
-  let atempc = objs?.create;
-  let atempu = objs?.update;
+  let atempc = objs.create;
   let response = [];
   console.log(atempc?.length);
   if(variableSize > 99) variableSize = 100
@@ -82,17 +82,23 @@ async function WooProductoBatch2(objs, variableSize) {
     ) {
       let temp = {
         create: atempc.slice(increment, increment + variableSize),
-        update: atempu.slice(increment, increment + variableSize),
+        update: [],
         delete: [],
       };
+      console.log("temp")
+      console.log(temp.create)
       let data = await WooCommerce.post("products/batch", temp);
-      response[increment / variableSize] = data?.data;
+      console.log("data?.data")
+      console.log(data?.data)
+      response.push(data?.data)
       console.log("round: " + increment / variableSize);
     }
   } catch (error) {
     console.log("Error on batch");
     console.log(error);
   }
+  console.log("RESPONSE")
+  console.log(response)
   return response;
 }
 
@@ -116,9 +122,11 @@ async function setCategoriesBatch(data) {
   return woores.data.create;
 }
 
-async function getWooProducto(obj){
+async function getWooProductoBySku(sku){
   // busacar por sku para agarrar el id de WooCommerce y así actualizar el producto en el ecommerce
-  
+  let res = await WooCommerce.get("products?filter[sku]='"+sku+"'")
+  console.log(res.json())
+  return res.json()
 }
 module.exports = {
   crearWooProducto,
@@ -127,4 +135,5 @@ module.exports = {
   getWooStatus,
   WooProductoBatch2,
   setCategoriesBatch,
+  getWooProductoBySku
 };

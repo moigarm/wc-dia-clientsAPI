@@ -79,6 +79,17 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto.stock_status = wooProductoFromWebhook.stock_status;
   newWooProducto._links.self = wooProductoFromWebhook._links?.self;
   newWooProducto._links.collection = wooProductoFromWebhook._links?.collection;
+  newWooProducto.nombre_almacen = wooProductoFromWebhook.nombreAlmacen;
+  newWooProducto.idservicio = wooProductoFromWebhook.Idservicio, // agregar a WooCommerce
+  newWooProducto.tasa_descuento = wooProductoFromWebhook.tasaDescuento // agregar a WooCommerce
+  newWooProducto.stock_quantity = wooProductoFromWebhook.Cantidad
+  newWooProducto.sku = wooProductoFromWebhook.ID
+  newWooProducto.name = wooProductoFromWebhook.NombreComercial
+  newWooProducto.existencia = wooProductoFromWebhook.existencia // agregar a WooCommerce
+  newWooProducto.regular_price = wooProductoFromWebhook.VentaUnitaria
+  newWooProducto.tasaiva = wooProductoFromWebhook.tasaIva
+  newWooProducto.nomGsenerico = wooProductoFromWebhook.nomGenerico
+  newWooProducto.id = wooProductoFromWebhook.id
   return newWooProducto;
 }
 function newbimanProductoToWoo(objeto) {
@@ -111,35 +122,23 @@ function newbimanProductoToWoo(objeto) {
   return newObj;
 }
 function bimanProductoToWoo(objeto) {
-  let newObj = new wooProducto();
-  (newObj.internal_id = objeto.ID),
-    (newObj.nombre_almacen = objeto.nombreAlmacen), // agregar a WooCommerce
+  let f = {
+    internal_id: objeto.ID,
+    nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
     /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
-    (newObj.idservicio = objeto.Idservicio), // agregar a WooCommerce
-    (newObj.tasa_descuento = objeto.tasaDescuento), // agregar a WooCommerce
-    (newObj.stock_quantity = objeto.Cantidad),
-    (newObj.sku = objeto.ID),
-    (newObj.name = objeto.NombreComercial),
-    (newObj.existencia = objeto.existencia), // agregar a WooCommerce
-    (newObj.regular_price = objeto.VentaUnitaria),
-    (newObj.tasaiva = objeto.tasaIva),
-    (newObj.nomGsenerico = objeto.nomGenerico);
-
-  // agregar a WooCommerce
-  return newObj;
-
-  // ID,
-  // CodigoSap,
-  // NombreComercial,
-  // nomGenerico,
-  // VentaUnitaria,
-  // tasaIva,
-  // existencia,
-  // nombreAlmacen, //
-  // nomTipo,//
-  // Idservicio,//
-  // tasaDescuento,//
-  // Cantidad//
+    idservicio: objeto.Idservicio, // agregar a WooCommerce
+    tasa_descuento: objeto.tasaDescuento, // agregar a WooCommerce
+    stock_quantity: objeto.existencia,
+    sku: objeto.ID,
+    name: objeto.NombreComercial,
+    existencia: objeto.existencia, // agregar a WooCommerce
+    regular_price: `${objeto.VentaUnitaria}`,
+    tasaiva: objeto.tasaIva,
+    nomgenerico: objeto.nomGener,
+    id: objeto.id
+  };
+  console.log("REGRESA")
+  console.log(f)
 }
 
 function bimanProductoToWooNoId(objeto) {
