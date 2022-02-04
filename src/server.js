@@ -46,6 +46,65 @@ let allowedOrigins = [""];
   }
 }) */
 
+cron.schedule("*/10 * * * * *", async () => {
+  console.log("hola");
+
+  const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  let coolecheraProds = await getCoolecheraProducts();
+
+  if (bimanProds.length === 0) {
+    await bimanProducto.insertMany(coolecheraProds);
+  }
+  let bimanProdsNew;
+  console.log(JSON.stringify(bimanProds) === JSON.stringify(coolecheraProds));
+
+  await bimanProducto.deleteMany({});
+  await bimanProducto.insertMany(coolecheraProds);
+  bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  let updates = [];
+  let news = [];
+
+  const validateBimanProd = (objActual, bimanProd) => {
+    console.log(objActual.VentaUnitaria);
+    console.log(bimanProd.VentaUnitaria);
+    return (
+      objActual.NombreComercial === bimanProd.NombreComercial &&
+      objActual.nomGenerico === bimanProd.nomGenerico &&
+      objActual.VentaUnitaria === bimanProd.VentaUnitaria
+    );
+  };
+
+  bimanProdsNew.forEach((prod, index) => {
+    if (index <= bimanProds.length - 1) {
+      if (validateBimanProd(prod, bimanProds[index])) {
+        updates.push(bimanProductoToWooNoId(prod));
+      }
+    } else {
+      news.push(prod);
+    }
+  });
+
+  let wooProductsUpdates = [];
+  for (let i = 0; i < updates.length; i++) {
+    try {
+      const newProd = await wooProducto.findOneAndUpdate(
+        { sku: updates[i].sku },
+        updates[i]
+      );
+      wooProductsUpdates.push(newProd);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const woores = await WooCommerce.post("products/batch", {
+    update: wooProductsUpdates,
+    create: bimanProductoToWooBatch(news).create,
+  });
+
+  await wooProducto.insertMany(woores.data.create);
+});
+
 var app = express();
 app.use(
   cors({
