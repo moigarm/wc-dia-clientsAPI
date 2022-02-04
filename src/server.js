@@ -14,19 +14,19 @@ const wooProductoController = require("./controllers/wooProductoController");
 const dialogFlowController = require("./controllers/dialogFlowController");
 
 const { batchInicial } = require("./util/batchInicial");
+const { WooProductoBatch2 } = require("./util/WooCommerceAPI")
 
 const getCoolecheraProducts = require("./util/getCoolecheraProducts");
 var cron = require("node-cron");
 const mongoose = require("mongoose");
 const wooProducto = mongoose.model("wooProducto");
-const bimanProducto = require("./models/bimmanProductoModel");
+const bimanProducto = mongoose.model("BimanProducto");
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 const {
   bimanProductoToWoo,
   bimanProductoToWooNoId,
   bimanProductoToWooBatch,
 } = require("./util/wooProductoMapper");
-const { Console } = require("console");
 
 const WooCommerce = new WooCommerceRestApi({
   url: process.env.WOOCOMMERCE_BASE_URL, // Your store URL
@@ -47,36 +47,38 @@ let allowedOrigins = [""];
 }) */
 
 cron.schedule("*/10 * * * * *", async () => {
-  console.log("hola");
+  console.log("paso 1");
 
   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
   let coolecheraProds = await getCoolecheraProducts();
-
+  coolecheraProds[0].VentaUnitaria = 333333
   if (bimanProds.length === 0) {
     await bimanProducto.insertMany(coolecheraProds);
   }
   let bimanProdsNew;
-  console.log(JSON.stringify(bimanProds) === JSON.stringify(coolecheraProds));
-
-  await bimanProducto.deleteMany({});
-  await bimanProducto.insertMany(coolecheraProds);
+  if(JSON.stringify(bimanProds) !== JSON.stringify(coolecheraProds)){
+    await bimanProducto.deleteMany({});
+    await bimanProducto.insertMany(coolecheraProds);
+  }
   bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  
   let updates = [];
   let news = [];
-
+  console.log("paso 2")
   const validateBimanProd = (objActual, bimanProd) => {
-    console.log(objActual.VentaUnitaria);
-    console.log(bimanProd.VentaUnitaria);
+    // console.log(objActual.VentaUnitaria);
+    // console.log(bimanProd.VentaUnitaria);
     return (
       objActual.NombreComercial === bimanProd.NombreComercial &&
       objActual.nomGenerico === bimanProd.nomGenerico &&
-      objActual.VentaUnitaria === bimanProd.VentaUnitaria
+      objActual.VentaUnitaria === bimanProd.VentaUnitaria &&
+      objActual.Cantidad === bimanProd.Cantidad
     );
   };
 
   bimanProdsNew.forEach((prod, index) => {
     if (index <= bimanProds.length - 1) {
-      if (validateBimanProd(prod, bimanProds[index])) {
+      if (!validateBimanProd(prod, bimanProds[index])) {
         updates.push(bimanProductoToWooNoId(prod));
       }
     } else {
@@ -85,24 +87,44 @@ cron.schedule("*/10 * * * * *", async () => {
   });
 
   let wooProductsUpdates = [];
+  console.log("Updates length")
+  console.log(updates.length)
   for (let i = 0; i < updates.length; i++) {
+    console.log(updates[i])
     try {
-      const newProd = await wooProducto.findOneAndUpdate(
-        { sku: updates[i].sku },
-        updates[i]
+      const newProd = await wooProducto.find(
+        { internal_id: updates[i].sku }
       );
+      console.log("New prod")
+      console.log(newProd)
       wooProductsUpdates.push(newProd);
     } catch (e) {
       console.log(e);
     }
   }
+  console.log("PROBLEMAAAA")
+  console.log("paso 3")
+  if(wooProductsUpdates.length !== 0 || news.length !== 0){
+    try{
 
-  const woores = await WooCommerce.post("products/batch", {
-    update: wooProductsUpdates,
-    create: bimanProductoToWooBatch(news).create,
-  });
+      // const woores = await WooCommerce.post("products/batch", {
+      //   update: wooProductsUpdates,
+      //   create: bimanProductoToWooBatch(news).create,
+      // });
+      let completeObject = {create: [], update: []}
+      console.log(news)
+      if(news.length !== 0)
+      completeObject.create = bimanProductoToWooBatch(news).create
+      if(wooProductsUpdates.length !== 0)
+      completeObject.update = wooProductsUpdates
 
-  await wooProducto.insertMany(woores.data.create);
+      const woores = await WooProductoBatch2(completeObject, 50)
+      
+      let insertRespose = await wooProducto.insertMany(woores.create);
+      console.log(insertRespose)
+    }catch(e){console.log(e)}
+  }
+  console.log("finalizado?")
 });
 
 var app = express();

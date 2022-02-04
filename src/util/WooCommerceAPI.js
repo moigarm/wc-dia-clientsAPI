@@ -67,25 +67,27 @@ async function WooProductoBatch(objs) {
   return res1;
 }
 
-async function WooProductoBatch2(objs) {
-  let atemp = objs.create;
+async function WooProductoBatch2(objs, variableSize) {
+  console.log(objs)
+  let atempc = objs?.create;
+  let atempu = objs?.update;
   let response = [];
-  console.log(atemp.length);
-  let variable = 100;
+  console.log(atempc?.length);
+  if(variableSize > 99) variableSize = 100
   try {
     for (
       let increment = 0;
-      increment < objs.create.length;
-      increment += variable
+      increment < atempc?.length;
+      increment += variableSize
     ) {
       let temp = {
-        create: atemp.slice(increment, increment + variable),
-        update: [],
+        create: atempc.slice(increment, increment + variableSize),
+        update: atempu.slice(increment, increment + variableSize),
         delete: [],
       };
       let data = await WooCommerce.post("products/batch", temp);
-      response[increment / variable] = data.data;
-      console.log("round: " + increment / variable);
+      response[increment / variableSize] = data?.data;
+      console.log("round: " + increment / variableSize);
     }
   } catch (error) {
     console.log("Error on batch");
@@ -112,6 +114,11 @@ async function setCategoriesBatch(data) {
   });
 
   return woores.data.create;
+}
+
+async function getWooProducto(obj){
+  // busacar por sku para agarrar el id de WooCommerce y así actualizar el producto en el ecommerce
+  
 }
 module.exports = {
   crearWooProducto,

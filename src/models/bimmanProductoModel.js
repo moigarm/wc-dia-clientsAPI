@@ -29,4 +29,4 @@ const BimmanProductSchema = mongoose.Schema({
   tasaDescuento: Number,
   Cantidad: Number,
 });
-module.exports = mongoose.model("BimanProducto", BimmanProductSchema);
+mongoose.model("BimanProducto", BimmanProductSchema);

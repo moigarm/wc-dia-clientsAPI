@@ -155,7 +155,7 @@ async function CrearProductoBatch(req, res) {
     await setCategoriesBatch(products);
 
     let productos = bimanProductoToWooBatch(products);
-    responseFromService = await WooProductoBatch2(productos);
+    responseFromService = await WooProductoBatch2(productos, 100);
     let finalResult = [];
     responseFromService.forEach((element, i) => {
       wooProducto.insertMany(element.create, (err, docs) => {

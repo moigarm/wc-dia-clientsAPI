@@ -10,3 +10,4 @@ mongoose.connect(`${process.env.DB_URL}/${process.env.DB_NAME}`, (err) => {
 require('./diaClientModel')
 require('./wooClientModel')
 require('./wooProductoModel')
+require('./bimmanProductoModel')

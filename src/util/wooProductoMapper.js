@@ -174,10 +174,12 @@ function bimanProductoToWooNoId(objeto) {
 
 function bimanProductoToWooBatch(objetos) {
   let productosArray = [];
+  console.log(objetos.length)
   objetos.forEach((key, i) => {
-    productosArray[i] = bimanProductoToWoo(key);
+    productosArray = [...productosArray, bimanProductoToWoo(key)];
   });
-  console.log(productosArray[0]);
+  console.log("is undefined?")
+  console.log(productosArray);
   return { create: productosArray };
 }
 
