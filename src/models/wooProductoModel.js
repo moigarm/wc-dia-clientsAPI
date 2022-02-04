@@ -184,14 +184,10 @@ var wooProducto = new mongoose.Schema({
   },
   categories: [
     {
-      _id: false,
       id: {
         type: String,
       },
       name: {
-        type: String,
-      },
-      slug: {
         type: String,
       },
     },

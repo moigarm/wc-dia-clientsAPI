@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const wooProducto = mongoose.model("wooProducto");
+const categoriesMod = require("../models/categoriesModel");
 
 function wooProductoMap(wooProductoFromWebhook, habilitado) {
   let newWooProducto = new wooProducto();
@@ -109,7 +110,6 @@ function newbimanProductoToWoo(objeto) {
     console.log(newObj);
   return newObj;
 }
-
 function bimanProductoToWoo(objeto) {
   let newObj = new wooProducto();
   (newObj.internal_id = objeto.ID),
@@ -118,12 +118,14 @@ function bimanProductoToWoo(objeto) {
     (newObj.idservicio = objeto.Idservicio), // agregar a WooCommerce
     (newObj.tasa_descuento = objeto.tasaDescuento), // agregar a WooCommerce
     (newObj.stock_quantity = objeto.Cantidad),
-    (newObj.sku = objeto.CodigoSap),
+    (newObj.sku = objeto.ID),
     (newObj.name = objeto.NombreComercial),
     (newObj.existencia = objeto.existencia), // agregar a WooCommerce
     (newObj.regular_price = objeto.VentaUnitaria),
     (newObj.tasaiva = objeto.tasaIva),
-    (newObj.nomgenerico = objeto.nomGenerico); // agregar a WooCommerce
+    (newObj.nomGsenerico = objeto.nomGenerico);
+
+  // agregar a WooCommerce
   return newObj;
 
   // ID,
@@ -148,7 +150,7 @@ function bimanProductoToWooNoId(objeto) {
     idservicio: objeto.Idservicio, // agregar a WooCommerce
     tasa_descuento: objeto.tasaDescuento, // agregar a WooCommerce
     stock_quantity: objeto.existencia,
-    sku: objeto.CodigoSap,
+    sku: objeto.ID,
     name: objeto.NombreComercial,
     existencia: objeto.existencia, // agregar a WooCommerce
     regular_price: `${objeto.VentaUnitaria}`,

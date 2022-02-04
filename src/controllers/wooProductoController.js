@@ -3,6 +3,7 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
+const categoriesMod = require("../models/categoriesModel");
 const {
   wooProductoMap,
   bimanProductoToWooBatch,
@@ -13,6 +14,7 @@ const {
   actualizarWooProducto,
   getWooStatus,
   WooProductoBatch2,
+  setCategoriesBatch,
 } = require("../util/WooCommerceAPI");
 const { comesFromBiman_Woo } = require("../util/locations");
 const fetch = require("node-fetch");
@@ -150,6 +152,8 @@ async function CrearProductoBatch(req, res) {
   let responseFromService = {};
   try {
     const products = await getCoolecheraProducts();
+    await setCategoriesBatch(products);
+
     let productos = bimanProductoToWooBatch(products);
     responseFromService = await WooProductoBatch2(productos);
     let finalResult = [];
@@ -224,4 +228,4 @@ router.get("/delete/:id", (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;

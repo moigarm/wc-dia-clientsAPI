@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+const mongoose = require("mongoose");
+
 const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 const WooCommerce = new WooCommerceRestApi({
@@ -92,14 +94,24 @@ async function WooProductoBatch2(objs) {
   return response;
 }
 
-function setCategories(data) {
-  WooCommerce.post("products/categories", data)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error.response.data);
-    });
+function getCategoriesList(categories) {
+  return Array.from(new Set(categories.map((prod) => prod.nomTipo)));
+}
+
+async function setCategoriesBatch(data) {
+  const categories = getCategoriesList(data);
+  console.log(categories);
+
+  const woores = await WooCommerce.post("products/categories/batch", {
+    create: categories.map((cat, index) => {
+      return {
+        name: cat,
+        id: index,
+      };
+    }),
+  });
+
+  return woores.data.create;
 }
 module.exports = {
   crearWooProducto,
@@ -107,5 +119,5 @@ module.exports = {
   WooProductoBatch,
   getWooStatus,
   WooProductoBatch2,
-  setCategories,
+  setCategoriesBatch,
 };
