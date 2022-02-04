@@ -130,7 +130,7 @@ cron.schedule("*/10 * * * * *", async () => {
         console.log("Objeto actualizado")
         console.log(res)
       })
-      return 0
+      // return 0
       updatesWoo?.data.update.forEach(ele =>{
         let res = actualizarWooProducto(ele.id, ele)
         console.log("Bucle")
