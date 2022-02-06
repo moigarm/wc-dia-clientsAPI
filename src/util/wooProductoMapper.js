@@ -122,7 +122,7 @@ function newbimanProductoToWoo(objeto) {
   return newObj;
 }
 function bimanProductoToWoo(objeto) {
-  let f = {
+  let newObj = {
     internal_id: objeto.ID,
     nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
     /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
@@ -134,11 +134,10 @@ function bimanProductoToWoo(objeto) {
     existencia: objeto.existencia, // agregar a WooCommerce
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
-    nomgenerico: objeto.nomGener,
+    nomgenerico: objeto.nomGenerico,
     id: objeto.id
   };
-  console.log("REGRESA")
-  console.log(f)
+  return newObj
 }
 
 function bimanProductoToWooNoId(objeto) {
@@ -154,32 +153,31 @@ function bimanProductoToWooNoId(objeto) {
     existencia: objeto.existencia, // agregar a WooCommerce
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
-    nomgenerico: objeto.nomGener,
+    nomgenerico: objeto.nomGenerico,
   };
-
-  // ID,
-  // CodigoSap,
-  // NombreComercial,
-  // nomGenerico,
-  // VentaUnitaria,
-  // tasaIva,
-  // existencia,
-  // nombreAlmacen, //
-  // nomTipo,//
-  // Idservicio,//
-  // tasaDescuento,//
-  // Cantidad//
 }
 
 function bimanProductoToWooBatch(objetos) {
   let productosArray = [];
+  console.log("Objetos a mapear")
   console.log(objetos.length)
   objetos.forEach((key, i) => {
-    productosArray = [...productosArray, bimanProductoToWoo(key)];
+    productosArray.push(bimanProductoToWoo(key));
   });
   console.log("is undefined?")
-  console.log(productosArray);
+  console.log(productosArray[0]);
   return { create: productosArray };
+}
+function bimanProductoToWooBatchNoID(objetos) {
+  let productosArray = [];
+  console.log("Objetos a mapear")
+  console.log(objetos.length)
+  objetos.forEach((key, i) => {
+    productosArray.push(bimanProductoToWooNoId(key));
+  });
+  console.log("is undefined?")
+  console.log(productosArray[0]);
+  return productosArray;
 }
 
 module.exports = {
@@ -188,4 +186,5 @@ module.exports = {
   bimanProductoToWooBatch,
   newbimanProductoToWoo,
   bimanProductoToWooNoId,
+  bimanProductoToWooBatchNoID
 };
