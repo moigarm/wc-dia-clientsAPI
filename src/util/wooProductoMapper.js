@@ -80,16 +80,16 @@ function wooProductoMap(wooProductoFromWebhook, habilitado) {
   newWooProducto._links.self = wooProductoFromWebhook._links?.self;
   newWooProducto._links.collection = wooProductoFromWebhook._links?.collection;
   newWooProducto.nombre_almacen = wooProductoFromWebhook.nombreAlmacen;
-  newWooProducto.idservicio = wooProductoFromWebhook.Idservicio, // agregar a WooCommerce
-  newWooProducto.tasa_descuento = wooProductoFromWebhook.tasaDescuento // agregar a WooCommerce
-  newWooProducto.stock_quantity = wooProductoFromWebhook.Cantidad
-  newWooProducto.sku = wooProductoFromWebhook.ID
-  newWooProducto.name = wooProductoFromWebhook.NombreComercial
-  newWooProducto.existencia = wooProductoFromWebhook.existencia // agregar a WooCommerce
-  newWooProducto.regular_price = wooProductoFromWebhook.VentaUnitaria
-  newWooProducto.tasaiva = wooProductoFromWebhook.tasaIva
-  newWooProducto.nomGsenerico = wooProductoFromWebhook.nomGenerico
-  newWooProducto.id = wooProductoFromWebhook.id
+  (newWooProducto.idservicio = wooProductoFromWebhook.Idservicio), // agregar a WooCommerce
+    (newWooProducto.tasa_descuento = wooProductoFromWebhook.tasaDescuento); // agregar a WooCommerce
+  newWooProducto.stock_quantity = wooProductoFromWebhook.Cantidad;
+  newWooProducto.sku = wooProductoFromWebhook.ID;
+  newWooProducto.name = wooProductoFromWebhook.NombreComercial;
+  newWooProducto.existencia = wooProductoFromWebhook.existencia; // agregar a WooCommerce
+  newWooProducto.regular_price = wooProductoFromWebhook.VentaUnitaria;
+  newWooProducto.tasaiva = wooProductoFromWebhook.tasaIva;
+  newWooProducto.nomGsenerico = wooProductoFromWebhook.nomGenerico;
+  newWooProducto.id = wooProductoFromWebhook.id;
   return newWooProducto;
 }
 function newbimanProductoToWoo(objeto) {
@@ -135,9 +135,9 @@ function bimanProductoToWoo(objeto) {
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
     nomgenerico: objeto.nomGenerico,
-    id: objeto.id
+    id: objeto.id,
   };
-  return newObj
+  return newObj;
 }
 
 function bimanProductoToWooNoId(objeto) {
@@ -154,46 +154,50 @@ function bimanProductoToWooNoId(objeto) {
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
     nomgenerico: objeto.nomGenerico,
-    categories: objeto.nomTipo
+    categories: objeto.nomTipo.trimEnd(),
   };
 }
 
 function bimanProductoToWooBatch(objetos) {
   let productosArray = [];
-  console.log("Objetos a mapear")
-  console.log(objetos.length)
+  console.log("Objetos a mapear");
+  console.log(objetos.length);
   objetos.forEach((key, i) => {
     productosArray.push(bimanProductoToWoo(key));
   });
-  console.log("is undefined?")
+  console.log("is undefined?");
   console.log(productosArray[0]);
   return { create: productosArray };
 }
 function bimanProductoToWooBatchNoID(objetos) {
   let productosArray = [];
-  console.log("Objetos a mapear")
-  console.log(objetos.length)
+  console.log("Objetos a mapear");
+  console.log(objetos.length);
   objetos.forEach((key, i) => {
     productosArray.push(bimanProductoToWooNoId(key));
   });
-  console.log("is undefined?")
+  console.log("is undefined?");
   console.log(productosArray[0]);
   return productosArray;
 }
 
-function MapCategoriesToProds(prods, categories){
-  prods.forEach((ele, i)=>{
+function MapCategoriesToProds(prods, categories) {
+  prods.forEach((ele, i) => {
     //console.log(ele)
-    let category = categories.find(obj => obj.name === ele.categories)
+
+    let category = categories.find(
+      (obj) => obj.name.toUpperCase() === ele.categories.toUpperCase()
+    );
     //console.log("CATEGORY")
     //console.log(category)
-    ele.categories = [{
-      id: category?.id,
-      name: category?.name,
-    }]
+    ele.categories = [
+      {
+        id: category?.id,
+      },
+    ];
     //console.log("SUCESSFULLY CATEGORY")
-  })
-  return prods
+  });
+  return prods;
 }
 
 module.exports = {
@@ -203,5 +207,5 @@ module.exports = {
   newbimanProductoToWoo,
   bimanProductoToWooNoId,
   bimanProductoToWooBatchNoID,
-  MapCategoriesToProds
+  MapCategoriesToProds,
 };
