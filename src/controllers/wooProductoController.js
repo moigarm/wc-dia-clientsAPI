@@ -38,9 +38,9 @@ router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
 
-router.get("/batchme", (req, res) => {
-  CrearProductoBatch(req, res);
-});
+// router.get("/batchme", (req, res) => {
+//   CrearProductoBatch(req, res);
+// });
 
 async function insertRecord(req, res) {
   console.log(req.body);
@@ -148,34 +148,34 @@ async function updateRecord(req, res) {
   }
 }
 
-async function CrearProductoBatch(req, res) {
-  let responseFromService = {};
-  try {
-    const products = await getCoolecheraProducts();
-    await setCategoriesBatch(products);
+// async function CrearProductoBatch(req, res) {
+//   let responseFromService = {};
+//   try {
+//     const products = await getCoolecheraProducts();
+//     await setCategoriesBatch(products);
 
-    let productos = bimanProductoToWooBatch(products);
-    responseFromService = await WooProductoBatch2(productos, 100);
-    let finalResult = [];
-    responseFromService.forEach((element, i) => {
-      wooProducto.insertMany(element.create, (err, docs) => {
-        if (!err) {
-          finalResult[i] = docs;
-        } else {
-          console.log(err);
-          res.json({
-            status: 404,
-            message: `No se insertaron los registros de manera adecuada a MongoDB : ' + ${err}`,
-          });
-        }
-      });
-    });
-    res.json({ status: 200, message: finalResult });
-  } catch (error) {
-    console.log("Error desconocido");
-    console.log(error);
-  }
-}
+//     let productos = bimanProductoToWooBatch(products);
+//     responseFromService = await WooProductoBatch2(productos, 100);
+//     let finalResult = [];
+//     responseFromService.forEach((element, i) => {
+//       wooProducto.insertMany(element.create, (err, docs) => {
+//         if (!err) {
+//           finalResult[i] = docs;
+//         } else {
+//           console.log(err);
+//           res.json({
+//             status: 404,
+//             message: `No se insertaron los registros de manera adecuada a MongoDB : ' + ${err}`,
+//           });
+//         }
+//       });
+//     });
+//     res.json({ status: 200, message: finalResult });
+//   } catch (error) {
+//     console.log("Error desconocido");
+//     console.log(error);
+//   }
+// }
 
 router.get("/list", (req, res) => {
   try {

@@ -45,7 +45,6 @@ async function actualizarWooProducto(id, obj) {
   try {
     let datos = await WooCommerce.put(`products/${id}`, obj);
     res1 = datos.data;
-    console.log(res1);
   } catch (error) {
     console.log(error);
   }
@@ -97,7 +96,9 @@ async function WooProductoBatchCreate(objs, variableSize) {
 }
 
 function getCategoriesList(categories) {
-  return Array.from(new Set(categories.map((prod) => prod.nomTipo)));
+  console.log(categories.length)
+  return categories.map((prod) => prod.nomTipo)
+  .filter((value, index, self) => self.indexOf(value) === index);
 }
 
 async function setCategoriesBatch(data) {
@@ -116,6 +117,14 @@ async function setCategoriesBatch(data) {
   return woores.data.create;
 }
 
+async function setCategoriesFinal(categories){
+  const woores = await WooCommerce.post("products/categories/batch", {
+    create: categories
+  });
+
+  return woores.data.create;
+}
+
 async function getWooProductoBySku(sku){
   // busacar por sku para agarrar el id de WooCommerce y así actualizar el producto en el ecommerce
   let res = await WooCommerce.get("products?filter[sku]='"+sku+"'")
@@ -129,5 +138,7 @@ module.exports = {
   getWooStatus,
   WooProductoBatchCreate,
   setCategoriesBatch,
-  getWooProductoBySku
+  getWooProductoBySku,
+  getCategoriesList,
+  setCategoriesFinal
 };

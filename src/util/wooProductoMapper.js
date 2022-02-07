@@ -154,6 +154,7 @@ function bimanProductoToWooNoId(objeto) {
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
     nomgenerico: objeto.nomGenerico,
+    categories: objeto.nomTipo
   };
 }
 
@@ -180,11 +181,27 @@ function bimanProductoToWooBatchNoID(objetos) {
   return productosArray;
 }
 
+function MapCategoriesToProds(prods, categories){
+  prods.forEach((ele, i)=>{
+    //console.log(ele)
+    let category = categories.find(obj => obj.name === ele.categories)
+    //console.log("CATEGORY")
+    //console.log(category)
+    ele.categories = [{
+      id: category?.id,
+      name: category?.name,
+    }]
+    //console.log("SUCESSFULLY CATEGORY")
+  })
+  return prods
+}
+
 module.exports = {
   wooProductoMap,
   bimanProductoToWoo,
   bimanProductoToWooBatch,
   newbimanProductoToWoo,
   bimanProductoToWooNoId,
-  bimanProductoToWooBatchNoID
+  bimanProductoToWooBatchNoID,
+  MapCategoriesToProds
 };

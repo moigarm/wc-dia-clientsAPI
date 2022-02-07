@@ -14,39 +14,22 @@ const wooProductoController = require("./controllers/wooProductoController");
 const dialogFlowController = require("./controllers/dialogFlowController");
 
 const { batchInicial } = require("./util/batchInicial");
-const { WooProductoBatchCreate, actualizarWooProducto } = require("./util/WooCommerceAPI")
+const { WooProductoBatchCreate, actualizarWooProducto, setCategoriesFinal, getCategoriesList } = require("./util/WooCommerceAPI")
 
 const getCoolecheraProducts = require("./util/getCoolecheraProducts");
 var cron = require("node-cron");
 const mongoose = require("mongoose");
 const wooProducto = mongoose.model("wooProducto");
 const bimanProducto = mongoose.model("BimanProducto");
-const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
+const categoriesModel = mongoose.model("categories");
+const bimanCategoriesModel = mongoose.model("bimanCategories");
 const {
-  bimanProductoToWoo,
   bimanProductoToWooNoId,
-  bimanProductoToWooBatch,
-  wooProductoMap,
+  MapCategoriesToProds,
   bimanProductoToWooBatchNoID
 } = require("./util/wooProductoMapper");
 
-const WooCommerce = new WooCommerceRestApi({
-  url: process.env.WOOCOMMERCE_BASE_URL, // Your store URL
-  consumerKey: process.env.CONSUMER_KEY, // Your consumer key
-  consumerSecret: process.env.CONSUMER_SECRET, // Your consumer secret
-  version: "wc/v3", // WooCommerce WP REST API version
-});
-
 let allowedOrigins = [""];
-
-/* wooProducto.find({}, (err, docs)=>{
-  if(!err && docs.length === 0){
-    console.log("MongoDB está vacío")
-    batchInicial()
-  }else{
-    console.log("MongoDB tiene registros de productos")
-  }
-}) */
 
 cron.schedule("*/30 * * * * *", async () => {
   let pruebaNuevoObjeto = {
@@ -55,10 +38,10 @@ cron.schedule("*/30 * * * * *", async () => {
     CodigoSap: "9999",
     NombreComercial: "IMPUESTO BOLSA NUEVO",
     nomGenerico: "Bolsa",
-    VentaUnitaria: 12346,
+    VentaUnitaria: 1110,
     tasaIva: 0,
     existencia: 150,
-    nomTipo: "FERRETERIA",
+    nomTipo: "NUEVA CATEGORIA",
     Idservicio: 25,
     tasaDescuento: 0,
     Cantidad: 0
@@ -67,8 +50,18 @@ cron.schedule("*/30 * * * * *", async () => {
 
   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
   let coolecheraProds = await getCoolecheraProducts();
-  coolecheraProds.push(pruebaNuevoObjeto)
-  coolecheraProds[coolecheraProds.length - 1].VentaUnitaria = 123456
+  // coolecheraProds.push(pruebaNuevoObjeto)
+  // coolecheraProds[coolecheraProds.length - 1].VentaUnitaria = 123456
+  //setCategoriesBatch
+  const bimanCategories = await bimanCategoriesModel.find({}, { _id: 0, __v: 0 });
+  let coolecheraCatTemp = getCategoriesList(coolecheraProds)
+  let coolecheraCategories = []
+    coolecheraCatTemp.forEach((ele)=>{
+      coolecheraCategories.push({name: ele})
+    })
+  if(bimanCategories.length === 0){
+    await bimanCategoriesModel.insertMany(coolecheraCategories)
+  }
 
   if (bimanProds.length === 0) {
     await bimanProducto.insertMany(coolecheraProds);
@@ -78,7 +71,14 @@ cron.schedule("*/30 * * * * *", async () => {
     await bimanProducto.deleteMany({});
     await bimanProducto.insertMany(coolecheraProds);
   }
+
+  if(JSON.stringify(bimanCategories) !== JSON.stringify(coolecheraCategories)){
+    await bimanCategoriesModel.deleteMany({});
+    await bimanCategoriesModel.insertMany(coolecheraCategories);
+  }
+
   let bimanProdsNew = await bimanProducto.find({}, { _id: 0, __v: 0 });
+  let bimanCategoriesNew = await bimanCategoriesModel.find({}, { _id: 0, __v: 0 });
   
   let updates = [];
   let news = [];
@@ -92,6 +92,31 @@ cron.schedule("*/30 * * * * *", async () => {
     );
   };
 
+  const validateBimanCategory = (objActual, bimanProdCategory) => {
+    return ( objActual.name === bimanProdCategory.name)
+  }
+
+  newCategories = []
+  console.log("paso 2.1")
+  // console.log(bimanCategoriesNew)
+  // console.log(bimanCategories)
+
+  if(bimanCategories.length > 0){
+  bimanCategoriesNew.forEach((prod, index) => {
+    if (!(index <= bimanCategories.length - 1)) {
+      if (validateBimanCategory(prod, bimanCategories[index])) {
+        newCategories.push(prod);
+      }
+    }
+  })
+  }else{
+    bimanCategoriesNew.forEach((prod)=>{
+      newCategories.push(prod);
+    })
+  }
+  console.log("CATEGORIES")
+  console.log(newCategories)
+
   bimanProdsNew.forEach((prod, index) => {
     if (index <= bimanProds.length - 1) {
       if (!validateBimanProd(prod, bimanProds[index])) {
@@ -101,7 +126,13 @@ cron.schedule("*/30 * * * * *", async () => {
       news.push(prod);
     }
   });
+  if(newCategories.length > 0){
+    let categoriesInWooCommerce = await setCategoriesFinal(newCategories)
+    await categoriesModel.insertMany(categoriesInWooCommerce)
+    console.log(categoriesInWooCommerce)
+  }
 
+  let WooCommerceProductCategories = await categoriesModel.find({}, { _id: 0, __v: 0 })
   let wooProductsUpdates = [];
   console.log("Objetos a insertar")
   console.log(news.length)
@@ -111,23 +142,30 @@ cron.schedule("*/30 * * * * *", async () => {
     try {
       const newProd = await wooProducto.find(
         { sku: updates[i].sku },
-        { _id: 0, __v: 0 }
+        { _id: 0, __: 0 }
       );
       let newObj = updates[i]
       newObj.id = newProd[0].id
+      let categories = WooCommerceProductCategories.find(obj => obj.name == newObj.category)
+      newObj.categories = categories
       wooProductsUpdates.push(newObj);
     } catch (e) {
       console.log(e);
     }
   }
+
+  
   // return 0
   console.log("paso 3")
   if(wooProductsUpdates.length !== 0 || news.length !== 0){
     try{
       let toCreate = []
       //console.log(news[0])
-      if(news.length !== 0)
-      toCreate = bimanProductoToWooBatchNoID(news)
+      if(news.length !== 0){
+        let tempProds = bimanProductoToWooBatchNoID(news)
+        toCreate = MapCategoriesToProds(tempProds, WooCommerceProductCategories)
+        console.log(toCreate[0])
+      }
 
       if(news.length > 0){
         let createsWoo = await WooProductoBatchCreate(toCreate, 50)
