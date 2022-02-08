@@ -9,17 +9,19 @@ const { default: axios } = require("axios");
 let bimanCreateClient = process.env.BIMAN_BASE + process.env.BIMAN_C_CLIENT;
 let bimanUpdateClient = process.env.BIMAN_BASE + process.env.BIMAN_U_CLIENT;
 
-router.post("/", (req, res) => {
-  insertRecord(req, res);
+router.post("/", async (req, res) => {
+  await insertRecord(req, res);
 });
 
 router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
 
-function insertRecord(req, res) {
+async function insertRecord(req, res) {
   const { Nombre, Apellido, Telefono, Correo } =
     req.body.queryResult.parameters;
+  console.log("NOMBRE");
+  console.log(Apellido);
   try {
     let client = new diaClient({
       firstName: Nombre,
@@ -28,24 +30,25 @@ function insertRecord(req, res) {
       phoneNumber: Telefono,
       email: Correo,
     });
+
+    const token = await GetAccessToken();
+    await axios.post(
+      `${process.env.SUITE_CRM}/V8/module`,
+      {
+        data: {
+          type: "Leads",
+          attributes: {
+            first_name: Nombre,
+            last_name: Apellido,
+            email1: Correo,
+            phone_mobile: Telefono,
+          },
+        },
+      },
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     client.save(async (err, doc) => {
       if (!err) {
-        const token = await GetAccessToken();
-        await axios.post(
-          `${process.env.SUITE_CRM}/V8/module`,
-          {
-            data: {
-              type: "Leads",
-              attributes: {
-                first_name: Nombre,
-                last_name: Apellido,
-                email1: Correo,
-                phone_mobile: Telefono,
-              },
-            },
-          },
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
         res.json({ status: 200, message: doc });
       } else
         res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });

@@ -122,6 +122,9 @@ function newbimanProductoToWoo(objeto) {
   return newObj;
 }
 function bimanProductoToWoo(objeto) {
+  console.log("EXISTENCIA");
+  console.log(objeto.existencia);
+
   let newObj = {
     internal_id: objeto.ID,
     nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
@@ -141,6 +144,23 @@ function bimanProductoToWoo(objeto) {
 }
 
 function bimanProductoToWooNoId(objeto) {
+  console.log("EXISTENCIA");
+  console.log(objeto.existencia);
+  console.log({
+    internal_id: objeto.ID,
+    nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
+    /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
+    idservicio: objeto.Idservicio, // agregar a WooCommerce
+    tasa_descuento: objeto.tasaDescuento, // agregar a WooCommerce
+    stock_quantity: objeto.existencia,
+    sku: objeto.ID,
+    name: objeto.NombreComercial,
+    existencia: objeto.existencia, // agregar a WooCommerce
+    regular_price: `${objeto.VentaUnitaria}`,
+    tasaiva: objeto.tasaIva,
+    nomgenerico: objeto.nomGenerico,
+    categories: objeto.nomTipo.trimEnd(),
+  });
   return {
     internal_id: objeto.ID,
     nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
@@ -157,7 +177,24 @@ function bimanProductoToWooNoId(objeto) {
     categories: objeto.nomTipo.trimEnd(),
   };
 }
-
+function bimanProductoToWooNoId2(objeto) {
+  console.log("EXISTENCIA");
+  console.log(objeto.existencia);
+  return {
+    internal_id: objeto.ID,
+    nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
+    /*   newObj.categories = [{name: objeto.nomTipo, slug: objeto.nomTipo.split(" ").join("-")}], */
+    idservicio: objeto.Idservicio, // agregar a WooCommerce
+    tasa_descuento: objeto.tasaDescuento, // agregar a WooCommerce
+    stock_quantity: objeto.existencia,
+    sku: objeto.ID,
+    name: objeto.NombreComercial,
+    existencia: objeto.existencia, // agregar a WooCommerce
+    regular_price: `${objeto.VentaUnitaria}`,
+    tasaiva: objeto.tasaIva,
+    nomgenerico: objeto.nomGenerico,
+  };
+}
 function bimanProductoToWooBatch(objetos) {
   let productosArray = [];
   console.log("Objetos a mapear");
@@ -185,9 +222,7 @@ function MapCategoriesToProds(prods, categories) {
   prods.forEach((ele, i) => {
     //console.log(ele)
 
-    let category = categories.find(
-      (obj) => obj.name.toUpperCase() === ele.categories.toUpperCase()
-    );
+    let category = categories.find((obj) => obj.name === ele.categories);
     //console.log("CATEGORY")
     //console.log(category)
     ele.categories = [
@@ -208,4 +243,5 @@ module.exports = {
   bimanProductoToWooNoId,
   bimanProductoToWooBatchNoID,
   MapCategoriesToProds,
+  bimanProductoToWooNoId2,
 };

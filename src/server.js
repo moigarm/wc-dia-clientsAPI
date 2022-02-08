@@ -31,6 +31,7 @@ const bimanCategoriesModel = mongoose.model("bimanCategories");
 const {
   bimanProductoToWooNoId,
   MapCategoriesToProds,
+  bimanProductoToWooNoId2,
   bimanProductoToWooBatchNoID,
 } = require("./util/wooProductoMapper");
 
@@ -52,9 +53,9 @@ cron.schedule("*/30 * * * * *", async () => {
     Cantidad: 0,
   };
 
-  console.log("HEY TEST");
-  console.log(await wooProducto.findOne({ sku: "3768" }));
   console.log("paso 1");
+
+  console.log(await wooProducto.findOne({ sku: "7055" }));
 
   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
   let coolecheraProds = await getCoolecheraProducts();
@@ -104,7 +105,8 @@ cron.schedule("*/30 * * * * *", async () => {
       objActual.NombreComercial === bimanProd.NombreComercial &&
       objActual.nomGenerico === bimanProd.nomGenerico &&
       objActual.VentaUnitaria === bimanProd.VentaUnitaria &&
-      objActual.Cantidad === bimanProd.Cantidad
+      objActual.Cantidad === bimanProd.Cantidad &&
+      objActual.existencia === bimanProd.existencia
     );
   };
 
@@ -136,7 +138,7 @@ cron.schedule("*/30 * * * * *", async () => {
   bimanProdsNew.forEach((prod, index) => {
     if (index <= bimanProds.length - 1) {
       if (!validateBimanProd(prod, bimanProds[index])) {
-        updates.push(bimanProductoToWooNoId(prod));
+        updates.push(bimanProductoToWooNoId2(prod));
       }
     } else {
       news.push(prod);
@@ -183,6 +185,7 @@ cron.schedule("*/30 * * * * *", async () => {
       //console.log(news[0])
       if (news.length !== 0) {
         let tempProds = bimanProductoToWooBatchNoID(news);
+
         toCreate = MapCategoriesToProds(
           tempProds,
           WooCommerceProductCategories
@@ -193,6 +196,7 @@ cron.schedule("*/30 * * * * *", async () => {
       if (news.length > 0) {
         let createsWoo = await WooProductoBatchCreate(toCreate, 50);
         console.log("Crear productos");
+        console.log(createsWoo[0].create);
         createsWoo.forEach((ele) => {
           wooProducto.insertMany(ele.create, (err, docs) => {
             if (err) console.log(err);

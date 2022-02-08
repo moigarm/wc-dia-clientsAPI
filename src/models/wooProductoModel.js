@@ -118,6 +118,7 @@ var wooProducto = new mongoose.Schema({
   },
   stock_quantity: {
     type: Number,
+    required: true,
   },
   backorders: {
     type: String,
