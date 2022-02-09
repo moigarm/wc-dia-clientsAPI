@@ -144,8 +144,8 @@ function bimanProductoToWoo(objeto) {
 }
 
 function bimanProductoToWooNoId(objeto) {
-  console.log("EXISTENCIA");
-  console.log(objeto.existencia);
+  // console.log("EXISTENCIA");
+  // console.log(objeto.existencia);
   console.log({
     internal_id: objeto.ID,
     nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
@@ -175,11 +175,12 @@ function bimanProductoToWooNoId(objeto) {
     tasaiva: objeto.tasaIva,
     nomgenerico: objeto.nomGenerico,
     categories: objeto.nomTipo.trimEnd(),
+    manage_stock: true
   };
 }
 function bimanProductoToWooNoId2(objeto) {
-  console.log("EXISTENCIA");
-  console.log(objeto.existencia);
+  // console.log("EXISTENCIA");
+  // console.log(objeto.existencia);
   return {
     internal_id: objeto.ID,
     nombre_almacen: objeto.nombreAlmacen, // agregar a WooCommerce
@@ -193,6 +194,8 @@ function bimanProductoToWooNoId2(objeto) {
     regular_price: `${objeto.VentaUnitaria}`,
     tasaiva: objeto.tasaIva,
     nomgenerico: objeto.nomGenerico,
+    manage_stock: true,
+    categories: objeto.nomTipo.trimEnd()
   };
 }
 function bimanProductoToWooBatch(objetos) {

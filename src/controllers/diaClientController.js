@@ -18,10 +18,9 @@ router.put("/update", (req, res) => {
 });
 
 async function insertRecord(req, res) {
-  const { Nombre, Apellido, Telefono, Correo } =
+  const { Nombre, Apellido, Telefono, Correo, Ubicacion } =
     req.body.queryResult.parameters;
-  console.log("NOMBRE");
-  console.log(Apellido);
+  console.log(req.body.queryResult.parameters)
   try {
     let client = new diaClient({
       firstName: Nombre,
@@ -42,6 +41,7 @@ async function insertRecord(req, res) {
             last_name: Apellido,
             email1: Correo,
             phone_mobile: Telefono,
+            primary_address_city: Ubicacion
           },
         },
       },

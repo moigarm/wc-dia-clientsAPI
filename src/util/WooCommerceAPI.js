@@ -83,8 +83,8 @@ async function WooProductoBatchCreate(objs, variableSize) {
         delete: [],
       };
       let data = await WooCommerce.post("products/batch", temp);
-      console.log("data?.data")
-      console.log(data?.data.create[0])
+      //console.log("data?.data")
+      //console.log(data?.data.create[0])
       response.push(data?.data)
       console.log("round: " + increment / variableSize);
     }

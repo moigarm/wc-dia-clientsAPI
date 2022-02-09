@@ -14,7 +14,7 @@ router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
 
-function insertRecord(req, res) {
+async function insertRecord(req, res) {
   console.log(req.body)
   console.log(typeof req.body.webhook_id)
   if(typeof req.body.webhook_id === "string")return 0
@@ -22,7 +22,8 @@ function insertRecord(req, res) {
     console.log("Comienza push de cliente a suiteCRM")
     let newwooClient = wooClientMap(req.body.billing)
     console.log(newwooClient)
-    newwooClient.save(async (err, doc) => {
+    let pric = new wooClient(newwooClient)
+    await pric.save(async (err, doc) => {
     if (!err) {
       const token = await GetAccessToken();
       await axios.post(
@@ -30,7 +31,7 @@ function insertRecord(req, res) {
         {
           data: {
             type: "Contacts",
-            attributes: wooClient,
+            attributes: newwooClient,
           },
         },
         { headers: { Authorization: `Bearer ${token}` } }
