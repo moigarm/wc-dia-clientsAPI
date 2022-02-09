@@ -59,12 +59,12 @@ cron.schedule("*/30 * * * * *", async () => {
   try{
   const bimanProds = await bimanProducto.find({}, { _id: 0, __v: 0 });
   let coolecheraProds = await getCoolecheraProducts();
-  coolecheraProds.push(pruebaNuevoObjeto)
-  coolecheraProds[coolecheraProds.length - 1].VentaUnitaria = 147852
-  coolecheraProds[coolecheraProds.length - 1].existencia = 1000
+  //coolecheraProds.push(pruebaNuevoObjeto)
+  //coolecheraProds[coolecheraProds.length - 1].VentaUnitaria = 147852
+  //coolecheraProds[coolecheraProds.length - 1].existencia = 1000
   // coolecheraProds[coolecheraProds.length - 1].nomTipo = "CATEGORIA ROCHA"
   //coolecheraProds[coolecheraProds.length - 1].nomTipo = "AVENA"
-  coolecheraProds[coolecheraProds.length - 1].nomTipo = "AREQUIPE"
+  //coolecheraProds[coolecheraProds.length - 1].nomTipo = "AREQUIPE"
   
   const bimanCategories = await bimanCategoriesModel.find(
     {},
