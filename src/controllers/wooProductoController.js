@@ -26,14 +26,94 @@ let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT;
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT;
 let bimanProductos = process.env.BIMAN_PRODUCTOS;
 
-router.get("/status", (req, res) => {
-  res.json({ status: 200, message: getWooStatus() });
-});
+/**
+ * @swagger
+ *  /wooProducto:
+ *    post:
+ *      description: Crea un producto en WooCommerce
+ *    parameters:
+ *      - name: bimanProducto
+ *        in: body
+ *        description: Producto proveniente de API biman
+ *        required: true
+ *        schema:
+ *          type: object
+ *          properties:
+ *            nombreAlmacen:
+ *              type: string
+ *            ID:
+ *              type: number
+ *            CodigoSap:
+ *              type: string
+ *            NombreComercial:
+ *              type: string
+ *            nomGenerico:
+ *              type: string
+ *            VentaUnitaria:
+ *              type: number
+ *            tasaIva:
+ *              type: number
+ *            existencia:
+ *              type: number
+ *            nomTipo:
+ *              type: string
+ *            Idservicio:
+ *              type: number
+ *            tasaDescuento:
+ *              type: number
+ *            Cantidad:
+ *              type: number
+ *    responses:
+ *      '201':
+ *        description: Producto creado en WooCommerce
+ */
 router.post("/", (req, res) => {
   console.log(req.body);
   insertRecord(req, res);
 });
 
+/**
+ * @swagger
+ *  /wooProducto/update:
+ *    put:
+ *      description: Actualiza un producto en WooCommerce, requiere del objeto que se guarda en el API biman
+ *      summary: Actualiza un producto en WooCommerce
+ *    parameters:
+ *      - name: bimanProducto
+ *        in: body
+ *        description: Producto proveniente de API biman
+ *        required: true
+ *        schema:
+ *          type: object
+ *          properties:
+ *            nombreAlmacen:
+ *              type: string
+ *            ID:
+ *              type: number
+ *            CodigoSap:
+ *              type: string
+ *            NombreComercial:
+ *              type: string
+ *            nomGenerico:
+ *              type: string
+ *            VentaUnitaria:
+ *              type: number
+ *            tasaIva:
+ *              type: number
+ *            existencia:
+ *              type: number
+ *            nomTipo:
+ *              type: string
+ *            Idservicio:
+ *              type: number
+ *            tasaDescuento:
+ *              type: number
+ *            Cantidad:
+ *              type: number
+ *    responses:
+ *      '201':
+ *        description: Producto creado en WooCommerce
+ */
 router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
@@ -73,7 +153,7 @@ async function insertRecord(req, res) {
 
       producto2.save((err, doc) => {
         if (!err) {
-          res.json({ status: 200, message: doc });
+          res.json({ status: 201, message: doc });
         } else
           res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
       });

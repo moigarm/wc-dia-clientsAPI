@@ -9,6 +9,16 @@ const { default: axios } = require("axios");
 let bimanCreateClient = process.env.BIMAN_BASE + process.env.BIMAN_C_CLIENT;
 let bimanUpdateClient = process.env.BIMAN_BASE + process.env.BIMAN_U_CLIENT;
 
+/**
+ * @swagger
+ * /diaClient:
+ *  post:
+ *    description: Crea un cliente potencial en suiteCRM
+ *    responses:
+ *      '200':
+ *        description: Cliente potencial insertado de manera satisfactoria en suiteCRM
+ */
+
 router.post("/", async (req, res) => {
   await insertRecord(req, res);
 });
