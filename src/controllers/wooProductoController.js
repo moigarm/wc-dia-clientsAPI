@@ -111,8 +111,8 @@ router.post("/", (req, res) => {
  *            Cantidad:
  *              type: number
  *    responses:
- *      '201':
- *        description: Producto creado en WooCommerce
+ *      '200':
+ *        description: Producto actualizado en WooCommerce
  */
 router.put("/update", (req, res) => {
   updateRecord(req, res);
@@ -122,47 +122,55 @@ router.put("/update", (req, res) => {
 //   CrearProductoBatch(req, res);
 // });
 
+// DELETE LOGIC WHEN OBJECT COMES FROM BIMAN
 async function insertRecord(req, res) {
   console.log(req.body);
-  let noNew = false;
   try {
-    let producto = newbimanProductoToWoo(req.body);
-    let responseFromService = {};
-    wooProducto.find({ id: req.body.id }, (err, doc) => {
-      if (doc.id == req.body.id) noNew = true;
-    });
-    if (!noNew) {
-      if (comesFromBiman_Woo(req.header("x-wc-webhook-source")) == "biman") {
-        let response = fetch(`${bimanCreateProduct}`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: JSON.stringify(producto),
-        });
-        let data = await response.data;
-        console.log(data);
-        responseFromService = producto;
-      } else {
-        console.log("Crear producto ps");
-        responseFromService = await crearWooProducto(producto);
-      }
-      let producto2 = newbimanProductoToWoo(responseFromService);
+    // Traer categorías en MongoDB que se actualiza con Biman
+    const bimanCategories = await bimanCategoriesModel.find(
+      {},
+      { _id: 0, __v: 0 }
+      );
+    // Guardar categoría actual del objeto a insertar
+    let newCategory = false
+    const actualCategory = req.body?.nomTipo
+    console(actualCategory)
+    const match = bimanCategories.filter(o => o.name === actualCategory)
+    // Si la categoría del objeto a insertar es nueva, cambiamos el valor del flag
+    if(match !== undefined) newCategory = true
+    
+    // Guardar categoría en MongoDB
+    
 
-      producto2.save((err, doc) => {
-        if (!err) {
-          res.json({ status: 201, message: doc });
-        } else
-          res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
-      });
-    }
+    // Guardar categoría en WooCommerce, guardar respuesta en MongoDB
+
+
+    // Guardar producto en MongoDB
+    
+    
+    // Buscar id de categoría para componer objeto proveniente de Biman
+    
+    
+    // Convertir objeto proveniente de Biman con el id de Categoría de WooCommerce 
+    
+    
+    // Guardar producto en WooCommerce, guardar respuesta de WooCommerce
+
+
+    let producto2 = newbimanProductoToWoo(responseFromService);
+
+    producto2.save((err, doc) => {
+      if (!err) {
+        res.json({ status: 201, message: doc });
+      } else
+        res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
+    });
   } catch (error) {
     console.log(error);
   }
 }
 
+// DELETE LOGIC WHEN OBJECT COMES FROM BIMAN
 async function updateRecord(req, res) {
   let recentlyUpdated = false;
   let responseFromService = {};
@@ -227,35 +235,6 @@ async function updateRecord(req, res) {
     console.log(error);
   }
 }
-
-// async function CrearProductoBatch(req, res) {
-//   let responseFromService = {};
-//   try {
-//     const products = await getCoolecheraProducts();
-//     await setCategoriesBatch(products);
-
-//     let productos = bimanProductoToWooBatch(products);
-//     responseFromService = await WooProductoBatch2(productos, 100);
-//     let finalResult = [];
-//     responseFromService.forEach((element, i) => {
-//       wooProducto.insertMany(element.create, (err, docs) => {
-//         if (!err) {
-//           finalResult[i] = docs;
-//         } else {
-//           console.log(err);
-//           res.json({
-//             status: 404,
-//             message: `No se insertaron los registros de manera adecuada a MongoDB : ' + ${err}`,
-//           });
-//         }
-//       });
-//     });
-//     res.json({ status: 200, message: finalResult });
-//   } catch (error) {
-//     console.log("Error desconocido");
-//     console.log(error);
-//   }
-// }
 
 router.get("/list", (req, res) => {
   try {
