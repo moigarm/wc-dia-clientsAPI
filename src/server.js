@@ -20,15 +20,15 @@ var cron = require("node-cron");
 
 const { cronSchedule } = require("./cronSchedule")
 
-let allowedOrigins = [""];
+let allowedOrigins = [`http://localhost:${process.env.PORT}`];
 let secondsFromEnv = process.env.CRON_SECONDS
 const cronValue = convertToCronSyntax(secondsFromEnv)
 
-console.log("SECONDS: "+secondsFromEnv)
-console.log("CRON VALUE IS: "+cronValue)
-cron.schedule(cronValue, async() =>{
-  await cronSchedule()
-});
+// console.log("SECONDS: "+secondsFromEnv)
+// console.log("CRON VALUE IS: "+cronValue)
+// cron.schedule(cronValue, async() =>{
+//   await cronSchedule()
+// });
 
 var app = express();
 app.use(

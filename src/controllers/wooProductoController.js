@@ -8,11 +8,10 @@ const categoriesModel = mongoose.model("categories");
 const bimanCategoriesModel = mongoose.model("bimanCategories");
 
 const { filterObject, ObjCompare } = require("../util/utils");
-const wooProducto = mongoose.model("wooProducto");
 const categoriesMod = require("../models/categoriesModel");
 const {
   wooProductoMap,
-  bimanProductoToWooBatch,
+  bimanProductoToWooNoId,
   newbimanProductoToWoo,
 } = require("../util/wooProductoMapper");
 const {
@@ -131,6 +130,7 @@ router.put("/update", (req, res) => {
 async function insertRecord(req, res) {
   console.log(req.body);
   try {
+    //#region Category
     // Traer categorías en MongoDB que se actualiza con Biman
     const bimanCategories = await bimanCategoriesModel.find(
       {},
@@ -154,23 +154,32 @@ async function insertRecord(req, res) {
       // Guardar categoría en WooCommerce, guardar respuesta en MongoDB
       let categoryResponse = await createCategory(actualCategory)
       // Guardar producto en MongoDB
-      //categoriesModel
+      let WooProductCategory = new categoriesModel(categoryResponse)
+      WooProductCategory.save(async (err, doc) =>{
+        if(err)console.log(err)
+        else console.log(doc)
+      })
     }
+    //#endregion
 
-    
-    
+    //Guardar producto de biman en MongoDB (tal como viene del API)
+    let bimanProduct = new bimanProducto(req.body)
+    bimanProduct.save(async (err, doc) =>{
+      if(err)console.log(err)
+      else console.log(doc)
+    })
+
     // Buscar id de categoría para componer objeto proveniente de Biman
-    
+    const categoryWooProducto = await categoriesModel.find({name: actualCategory})
     
     // Convertir objeto proveniente de Biman con el id de Categoría de WooCommerce 
-    
+    const bimanProducto1 = bimanProductoToWooNoId(req.body)
+    bimanProducto1.categories = {id: categoryWooProducto.id}
     
     // Guardar producto en WooCommerce, guardar respuesta de WooCommerce
-
-
-    let producto2 = newbimanProductoToWoo(responseFromService);
-
-    producto2.save((err, doc) => {
+    let WooProductoResponse = await crearWooProducto(bimanProducto1)
+    let productoFinal = new wooProducto(WooProductoResponse)
+    productoFinal.findOneAndUpdate((err, doc) => {
       if (!err) {
         res.json({ status: 201, message: doc });
       } else
@@ -183,79 +192,105 @@ async function insertRecord(req, res) {
 
 // DELETE LOGIC WHEN OBJECT COMES FROM BIMAN
 async function updateRecord(req, res) {
-  let recentlyUpdated = false;
-  let responseFromService = {};
-  let producto = wooProductoMap(req.body);
   try {
-    // Elimina propiedades que no se desea guardar
-    // (se tiene que agregar con ObjCompare en caso de no ser un arreglo vacío)
-    //console.log(filterObject(req.body, ["permalink"]));
-    wooProducto.find({ id: req.body.id }, (err, doc) => {
-      // Último parámetro es para propiedades que no necesitan compararse
-      // ejemplo: date_created, date_created_gmt, date_modified, date_modified_gmt
-      // por que se quiere comparar si en realidad las propiedades fueron modificadas
-      recentlyUpdated = ObjCompare(producto, doc, [
-        "date_modified",
-        "date_modified_gmt",
-      ]);
-      if (err) console.log(err);
-    });
-
-    // Si no se acaban de actualizar
-    if (!recentlyUpdated) {
-      if (comesFromBiman_Woo(req.header("x-wc-webhook-source")) == "biman") {
-        let response = fetch(bimanUpdateProduct + "/" + id.req.body.id, {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-          body: JSON.stringify(producto),
-        });
-        let data = await response.data;
-        responseFromService = data;
-      } else {
-        responseFromService = await actualizarWooProducto(
-          producto.id,
-          producto
-        );
-      }
-      console.log("Response from the service is:");
-      let producto2 = wooProductoMap(responseFromService);
-      producto2._id = req.body._id;
-      wooProducto.findOneAndUpdate(
-        { _id: producto2._id },
-        producto2,
-        { new: true },
-        (err, doc) => {
-          if (!err) {
-            console.log(doc);
-            res.json({ status: 200, message: doc });
-          } else {
-            console.log(err);
-            res.json({
-              status: 404,
-              message: `No se actualizó el registro : ' + ${err}`,
-            });
-          }
-        }
+    //#region Category
+    // Traer categorías en MongoDB que se actualiza con Biman
+    const bimanCategories = await bimanCategoriesModel.find(
+      {},
+      { _id: 0, __v: 0 }
       );
+    // Guardar categoría actual del objeto a insertar
+    let newCategory = false
+    const actualCategory = req.body?.nomTipo
+    console(actualCategory)
+    const match = bimanCategories.filter(o => o.name === actualCategory)
+    // Si la categoría del objeto a insertar es nueva, cambiamos el valor del flag
+    if(match !== undefined) newCategory = true
+    
+    // Guardar categoría en MongoDB
+    if(newCategory){
+      let category = new bimanCategoriesModel({name: actualCategory})
+      category.save(async (err, doc) =>{
+        if(err)console.log(err)
+        else console.log(doc)
+      })
+      // Guardar categoría en WooCommerce, guardar respuesta en MongoDB
+      let categoryResponse = await createCategory(actualCategory)
+      // Guardar producto en MongoDB
+      let WooProductCategory = new categoriesModel(categoryResponse)
+      WooProductCategory.save(async (err, doc) =>{
+        if(err)console.log(err)
+        else console.log(doc)
+      })
     }
+    //#endregion
+
+    //Guardar producto de biman en MongoDB (tal como viene del API)
+    let bimanProduct = new bimanProducto(req.body)
+    bimanProducto.findOneAndUpdate(
+      { id: bimanProduct.internal_id },
+      bimanProduct,
+      {new: true},
+      (err, doc)=>{
+      if(err)console.log(err)
+      else console.log(doc)
+    })
+
+    // Buscar id de categoría para componer objeto proveniente de Biman
+    const categoryWooProducto = await categoriesModel.find({name: actualCategory})
+    
+    // Convertir objeto proveniente de Biman con el id de Categoría de WooCommerce 
+    const bimanProducto1 = bimanProductoToWooNoId(req.body)
+    bimanProducto1.categories = {id: categoryWooProducto.id}
+    const previousProducto = await wooProducto.find({sku: bimanProducto1.sku})
+    
+    // Guardar producto en WooCommerce, guardar respuesta de WooCommerce
+    let WooProductoResponse = await actualizarWooProducto(previousProducto.id, bimanProducto1)
+    let productoFinal = new wooProducto(WooProductoResponse)
+    wooProducto.findOneAndUpdate(
+      { id: productoFinal.id },
+      productoFinal,
+      {new: true},
+      (err, doc) => {
+      if (!err) {
+        res.json({ status: 201, message: doc });
+      } else
+        res.json({ status: 404, message: `Error en actualización : ' + ${err}` });
+    });
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 
+
+/**
+ * @swagger
+ *  /wooProducto/list:
+ *    get:
+ *      description: Lista los productos que se encuentran en la base de datos local que está actualizada con WooCommerce
+ *    responses:
+ *      '200':
+ *        description: Lista enviada
+ *        content: 
+ *          application/json:
+ *            scheme:
+ *              type: array
+ *              properties:
+ *                id:
+ *                type: integer
+ */
 router.get("/list", (req, res) => {
   try {
-    wooProducto.find((err, docs) => {
-      if (err)
+    wooProducto.find({},(err, docs) => {
+      if (err){
         res.json({
           status: 404,
           message: `Error durante la recuperación de datos : ' + ${err}`,
         });
+      }else{
+        console.log(docs[0])
       res.json({ status: 200, objects: docs });
+      }
     });
   } catch (error) {
     console.log(error);
