@@ -125,6 +125,13 @@ async function setCategoriesFinal(categories){
   return woores.data.create;
 }
 
+async function createCategory(categoryName){
+  const woores = await WooCommerce.post("products/categories", {
+    name: categoryName
+  })
+  return woores.data
+}
+
 async function getWooProductoBySku(sku){
   // busacar por sku para agarrar el id de WooCommerce y así actualizar el producto en el ecommerce
   let res = await WooCommerce.get("products?filter[sku]='"+sku+"'")
@@ -140,5 +147,6 @@ module.exports = {
   setCategoriesBatch,
   getWooProductoBySku,
   getCategoriesList,
-  setCategoriesFinal
+  setCategoriesFinal,
+  createCategory
 };

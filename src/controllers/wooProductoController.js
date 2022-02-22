@@ -1,6 +1,12 @@
 const express = require("express");
 var router = express.Router();
+
 const mongoose = require("mongoose");
+const wooProducto = mongoose.model("wooProducto");
+const bimanProducto = mongoose.model("BimanProducto");
+const categoriesModel = mongoose.model("categories");
+const bimanCategoriesModel = mongoose.model("bimanCategories");
+
 const { filterObject, ObjCompare } = require("../util/utils");
 const wooProducto = mongoose.model("wooProducto");
 const categoriesMod = require("../models/categoriesModel");
@@ -15,6 +21,7 @@ const {
   getWooStatus,
   WooProductoBatch2,
   setCategoriesBatch,
+  createCategory
 } = require("../util/WooCommerceAPI");
 const { comesFromBiman_Woo } = require("../util/locations");
 const fetch = require("node-fetch");
@@ -25,6 +32,7 @@ const generateSchema = require("generate-schema");
 let bimanCreateProduct = process.env.BIMAN_BASE + process.env.BIMAN_C_PRODUCT;
 let bimanUpdateProduct = process.env.BIMAN_BASE + process.env.BIMAN_U_PRODUCT;
 let bimanProductos = process.env.BIMAN_PRODUCTOS;
+//#region insert/update
 
 /**
  * @swagger
@@ -117,10 +125,7 @@ router.post("/", (req, res) => {
 router.put("/update", (req, res) => {
   updateRecord(req, res);
 });
-
-// router.get("/batchme", (req, res) => {
-//   CrearProductoBatch(req, res);
-// });
+//#endregion
 
 // DELETE LOGIC WHEN OBJECT COMES FROM BIMAN
 async function insertRecord(req, res) {
@@ -140,12 +145,18 @@ async function insertRecord(req, res) {
     if(match !== undefined) newCategory = true
     
     // Guardar categoría en MongoDB
-    
+    if(newCategory){
+      let category = new bimanCategoriesModel({name: actualCategory})
+      category.save(async (err, doc) =>{
+        if(err)console.log(err)
+        else console.log(doc)
+      })
+      // Guardar categoría en WooCommerce, guardar respuesta en MongoDB
+      let categoryResponse = await createCategory(actualCategory)
+      // Guardar producto en MongoDB
+      //categoriesModel
+    }
 
-    // Guardar categoría en WooCommerce, guardar respuesta en MongoDB
-
-
-    // Guardar producto en MongoDB
     
     
     // Buscar id de categoría para componer objeto proveniente de Biman

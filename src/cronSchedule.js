@@ -21,7 +21,7 @@ const {
 } = require("./util/WooCommerceAPI");
 
 
-async function cron() {
+async function cronSchedule() {
     let pruebaNuevoObjeto = {
     nombreAlmacen: "PS Tienda Virtual NUEVO",
     ID: 55555,
@@ -228,4 +228,4 @@ async function cron() {
     console.log("finalizado");
 }
 
-module.exports = {cron}
+module.exports = {cronSchedule}

@@ -18,7 +18,7 @@ const dialogFlowController = require("./controllers/dialogFlowController");
 
 var cron = require("node-cron");
 
-const { cron } = require("./cronSchedule")
+const { cronSchedule } = require("./cronSchedule")
 
 let allowedOrigins = [""];
 let secondsFromEnv = process.env.CRON_SECONDS
@@ -27,7 +27,7 @@ const cronValue = convertToCronSyntax(secondsFromEnv)
 console.log("SECONDS: "+secondsFromEnv)
 console.log("CRON VALUE IS: "+cronValue)
 cron.schedule(cronValue, async() =>{
-  await cron()
+  await cronSchedule()
 });
 
 var app = express();
