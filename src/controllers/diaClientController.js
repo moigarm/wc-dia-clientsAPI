@@ -145,7 +145,7 @@ router.get("/list", (req, res) => {
 
 router.get("/:id", (req, res) => {
   try {
-    diaClient.find({ id: req.params.id }, (err, doc) => {
+    diaClient.find({ _id: req.params.id }, (err, doc) => {
       if (err)
         res.json({
           status: 404,
@@ -162,7 +162,7 @@ router.get("/delete/:id", (req, res) => {
   try {
     req.body.habilitado = false;
     diaClient.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       diaClientMap(req.body),
       (err, doc) => {
         if (!err)
