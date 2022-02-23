@@ -36,7 +36,7 @@ async function insertRecord(req, res) {
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      res.json({ status: 200, message: doc });
+      res.json({ status: 201, message: doc });
     } else
       res.json({ status: 404, message: `Error en Inserción : ' + ${err}` });
   });
@@ -49,11 +49,11 @@ function updateRecord(req, res) {
   try {
     
     wooClient.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       wooClientMap(req.body),
       (err, doc) => {
         if (!err)
-        res.json({ status: 200, message: `Actualización satisfactoria` });
+        res.json({ status: 201, message: `Actualización satisfactoria` });
         else
         res.json({
           status: 404,
@@ -102,7 +102,7 @@ router.delete("/delete/:id", (req, res) => {
   try {
     
     wooClient.findOneAndUpdate(
-      { id: req.params.id },
+      { _id: req.params.id },
       wooClientMap(req.body, false),
       (err, doc) => {
         if (!err) res.json({ status: 200, message: `Eliminación satisfactoria` });

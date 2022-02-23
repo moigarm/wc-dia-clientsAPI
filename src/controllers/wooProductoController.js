@@ -297,9 +297,9 @@ router.get("/list", (req, res) => {
   }
 });
 
-router.get("/:sku", (req, res) => {
+router.get("/:internalid", (req, res) => {
   try {
-    wooProducto.find({ sku: req.params.sku }, (err, doc) => {
+    wooProducto.find({ sku: req.params.internalid }, (err, doc) => {
       if (err)
         res.json({
           status: 404,
@@ -312,11 +312,11 @@ router.get("/:sku", (req, res) => {
   }
 });
 
-router.get("/delete/:id", (req, res) => {
+router.get("/delete/:internalid", (req, res) => {
   try {
     req.body.habilitado = false;
     wooProducto.findOneAndUpdate(
-      { id: req.params.id },
+      { sku: req.params.internalid },
       wooProductoMap(req.body, false),
       (err, doc) => {
         if (!err)
